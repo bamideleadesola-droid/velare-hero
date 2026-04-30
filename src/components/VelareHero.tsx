@@ -1,16 +1,34 @@
 import { motion, useReducedMotion, type Transition } from "framer-motion";
 
-const luxuryImageUrl =
+const luxuryPosterUrl =
   "https://images.unsplash.com/photo-1757356657991-c3fd6e2e812e?auto=format&fit=crop&w=2400&q=90";
+
+const luxuryVideoUrl =
+  "https://videos.pexels.com/video-files/32456138/13842188_3840_2160_60fps.mp4";
 
 const easeOut: Transition["ease"] = [0.22, 1, 0.36, 1];
 
 const navItems = ["Home", "Residences", "Design", "Private Tours", "Journal"];
 
 const stats = [
-  { value: "50+", label: "Private Residences", icon: "building" },
-  { value: "$3.5M", label: "Residence Value", icon: "value" },
-  { value: "100+", label: "Private Tours", icon: "people" },
+  {
+    value: "50+",
+    label: "Private Residences",
+    note: "Curated portfolio",
+    icon: "building",
+  },
+  {
+    value: "$3.5M",
+    label: "Residence Value",
+    note: "Signature market",
+    icon: "value",
+  },
+  {
+    value: "100+",
+    label: "Private Tours",
+    note: "By invitation",
+    icon: "people",
+  },
 ] as const;
 
 type RevealConfig = {
@@ -158,39 +176,48 @@ export function VelareHero() {
               : { duration: 1.2, delay: 0.2, ease: easeOut }
           }
         >
-          <motion.img
-            src={luxuryImageUrl}
-            alt="Modern luxury residence with glass architecture at dusk"
-            className="h-full w-full object-cover object-[64%_center]"
-            fetchPriority="high"
-            initial={false}
-            animate={
-              shouldReduceMotion ? { scale: 1 } : { scale: [1, 1.035] }
-            }
-            transition={
-              shouldReduceMotion
-                ? { duration: 0 }
-                : {
-                    duration: 8,
-                    repeat: Infinity,
-                    repeatType: "reverse",
-                    ease: "easeInOut",
-                  }
-            }
-          />
+          {shouldReduceMotion ? (
+            <img
+              src={luxuryPosterUrl}
+              alt="Modern luxury residence with glass architecture at dusk"
+              className="h-full w-full object-cover object-[64%_center]"
+              fetchPriority="high"
+            />
+          ) : (
+            <motion.video
+              aria-hidden="true"
+              className="h-full w-full object-cover object-[64%_center]"
+              poster={luxuryPosterUrl}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              initial={false}
+              animate={{ scale: [1, 1.025] }}
+              transition={{
+                duration: 10,
+                repeat: Infinity,
+                repeatType: "reverse",
+                ease: "easeInOut",
+              }}
+            >
+              <source src={luxuryVideoUrl} type="video/mp4" />
+            </motion.video>
+          )}
         </motion.div>
 
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,103,184,0.9)_0%,rgba(0,157,214,0.68)_34%,rgba(0,196,218,0.22)_64%,rgba(4,31,72,0.12)_100%)]"
+          className="absolute inset-0 bg-[linear-gradient(90deg,rgba(15,23,42,0.9)_0%,rgba(49,20,93,0.76)_31%,rgba(0,118,147,0.42)_61%,rgba(7,14,35,0.18)_100%)]"
         />
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,25,77,0.32)_0%,rgba(0,141,206,0.08)_36%,rgba(2,78,132,0.62)_100%)]"
+          className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.42)_0%,rgba(88,28,135,0.1)_34%,rgba(3,7,18,0.72)_100%)]"
         />
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-[radial-gradient(circle_at_22%_28%,rgba(61,220,255,0.2),transparent_30%),radial-gradient(circle_at_85%_14%,rgba(255,139,92,0.16),transparent_26%)]"
+          className="absolute inset-0 bg-[radial-gradient(circle_at_22%_28%,rgba(217,70,239,0.24),transparent_30%),radial-gradient(circle_at_82%_16%,rgba(245,158,11,0.22),transparent_26%),radial-gradient(circle_at_48%_78%,rgba(20,184,166,0.18),transparent_34%)]"
         />
         <div aria-hidden="true" className="velare-grain absolute inset-0" />
 
@@ -295,21 +322,33 @@ export function VelareHero() {
 
           <motion.dl
             {...reveal({ y: 18, duration: 0.8, delay: 0.65 })}
-            className="mt-14 grid max-w-[700px] grid-cols-1 gap-6 border-t border-white/20 pt-8 sm:grid-cols-3 sm:gap-0 sm:border-t-0 sm:pt-0"
+            className="mt-14 grid max-w-[820px] grid-cols-1 gap-3 rounded-[28px] border border-white/[0.22] bg-white/[0.12] p-3 shadow-[0_24px_80px_rgba(0,0,0,0.24),inset_0_1px_0_rgba(255,255,255,0.22)] backdrop-blur-2xl sm:grid-cols-3"
           >
             {stats.map((stat, index) => (
               <div
                 key={stat.label}
-                className="flex items-center gap-4 border-white/[0.22] sm:block sm:border-l sm:px-8 first:sm:border-l-0 first:sm:pl-0"
+                className="group relative overflow-hidden rounded-[22px] border border-white/[0.18] bg-[linear-gradient(135deg,rgba(255,255,255,0.22),rgba(255,255,255,0.07))] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.24)] transition-[background-color,transform,border-color] duration-300 ease-in-out hover:-translate-y-1 hover:border-white/[0.36] hover:bg-white/[0.16]"
               >
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-[#0477bf] sm:mb-4">
-                  <StatIcon type={stat.icon} />
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent"
+                />
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/[0.35] bg-white/[0.9] text-[#581c87] shadow-[0_12px_32px_rgba(15,23,42,0.22)]">
+                    <StatIcon type={stat.icon} />
+                  </div>
+                  <span className="rounded-full border border-white/[0.24] bg-white/[0.12] px-3 py-1 font-sans text-[11px] font-medium uppercase leading-none tracking-[0.14em] text-white/[0.76]">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
                 </div>
-                <dt className="font-display text-[34px] font-medium leading-none tracking-normal text-white">
+                <dt className="mt-6 font-display text-[38px] font-medium leading-none tracking-normal text-white">
                   {stat.value}
                 </dt>
-                <dd className="mt-1 font-sans text-[14px] font-medium leading-[1.35] tracking-normal text-white/[0.82]">
+                <dd className="mt-2 font-sans text-[14px] font-semibold leading-[1.35] tracking-normal text-white">
                   {stat.label}
+                </dd>
+                <dd className="mt-1 font-sans text-[12px] font-medium uppercase leading-none tracking-[0.12em] text-white/[0.58]">
+                  {stat.note}
                 </dd>
               </div>
             ))}
