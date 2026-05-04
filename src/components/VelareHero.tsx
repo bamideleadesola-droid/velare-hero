@@ -322,32 +322,32 @@ export function VelareHero() {
 
           <motion.dl
             {...reveal({ y: 18, duration: 0.8, delay: 0.65 })}
-            className="mt-14 grid max-w-[820px] grid-cols-1 gap-3 rounded-[28px] border border-white/[0.22] bg-white/[0.12] p-3 shadow-[0_24px_80px_rgba(0,0,0,0.24),inset_0_1px_0_rgba(255,255,255,0.22)] backdrop-blur-2xl sm:grid-cols-3"
+            className="mt-10 grid max-w-[620px] grid-cols-1 gap-1.5 rounded-[20px] border border-white/[0.18] bg-white/[0.095] p-1.5 shadow-[0_18px_56px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.18)] backdrop-blur-2xl sm:grid-cols-3 lg:mt-12"
           >
             {stats.map((stat, index) => (
               <div
                 key={stat.label}
-                className="group relative overflow-hidden rounded-[22px] border border-white/[0.18] bg-[linear-gradient(135deg,rgba(255,255,255,0.22),rgba(255,255,255,0.07))] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.24)] transition-[background-color,transform,border-color] duration-300 ease-in-out hover:-translate-y-1 hover:border-white/[0.36] hover:bg-white/[0.16]"
+                className="group relative overflow-hidden rounded-[15px] border border-white/[0.15] bg-[linear-gradient(135deg,rgba(255,255,255,0.17),rgba(255,255,255,0.05))] p-3.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.18)] transition-[background-color,transform,border-color] duration-300 ease-in-out hover:-translate-y-0.5 hover:border-white/[0.3] hover:bg-white/[0.13]"
               >
                 <div
                   aria-hidden="true"
                   className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent"
                 />
-                <div className="flex items-start justify-between gap-4">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/[0.35] bg-white/[0.9] text-[#581c87] shadow-[0_12px_32px_rgba(15,23,42,0.22)]">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/[0.3] bg-white/[0.9] text-[#581c87] shadow-[0_8px_22px_rgba(15,23,42,0.18)]">
                     <StatIcon type={stat.icon} />
                   </div>
-                  <span className="rounded-full border border-white/[0.24] bg-white/[0.12] px-3 py-1 font-sans text-[11px] font-medium uppercase leading-none tracking-[0.14em] text-white/[0.76]">
+                  <span className="rounded-full border border-white/[0.2] bg-white/[0.1] px-2 py-1 font-sans text-[9px] font-medium uppercase leading-none tracking-[0.12em] text-white/[0.72]">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                 </div>
-                <dt className="mt-6 font-display text-[38px] font-medium leading-none tracking-normal text-white">
+                <dt className="mt-3 font-display text-[26px] font-medium leading-none tracking-normal text-white md:text-[30px]">
                   {stat.value}
                 </dt>
-                <dd className="mt-2 font-sans text-[14px] font-semibold leading-[1.35] tracking-normal text-white">
+                <dd className="mt-1.5 font-sans text-[12px] font-semibold leading-[1.25] tracking-normal text-white">
                   {stat.label}
                 </dd>
-                <dd className="mt-1 font-sans text-[12px] font-medium uppercase leading-none tracking-[0.12em] text-white/[0.58]">
+                <dd className="mt-1 font-sans text-[9px] font-medium uppercase leading-none tracking-[0.12em] text-white/[0.56]">
                   {stat.note}
                 </dd>
               </div>
