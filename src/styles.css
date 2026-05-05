@@ -35,6 +35,14 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
+.hide-scrollbar {
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 .velare-grain {
   opacity: 0.18;
   mix-blend-mode: soft-light;
