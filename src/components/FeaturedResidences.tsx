@@ -19,6 +19,26 @@ const residences = [
     image:
       "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1800&q=88",
     details: ["5 suites", "7 baths", "8,200 ft²"],
+    detailScenes: [
+      {
+        label: "Private suite",
+        value: "5 suites",
+        image:
+          "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=900&q=86",
+      },
+      {
+        label: "Bath detail",
+        value: "7 baths",
+        image:
+          "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=900&q=86",
+      },
+      {
+        label: "Interior scale",
+        value: "8,200 ft²",
+        image:
+          "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=86",
+      },
+    ],
   },
   {
     count: "02/06",
@@ -29,6 +49,26 @@ const residences = [
     image:
       "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1400&q=88",
     details: ["4 suites", "Pool court", "6,450 ft²"],
+    detailScenes: [
+      {
+        label: "Private suite",
+        value: "4 suites",
+        image:
+          "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=900&q=86",
+      },
+      {
+        label: "Pool detail",
+        value: "Pool court",
+        image:
+          "https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=900&q=86",
+      },
+      {
+        label: "Interior scale",
+        value: "6,450 ft²",
+        image:
+          "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=900&q=86",
+      },
+    ],
   },
   {
     count: "03/06",
@@ -39,6 +79,26 @@ const residences = [
     image:
       "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1400&q=88",
     details: ["3 suites", "Private dock", "4,980 ft²"],
+    detailScenes: [
+      {
+        label: "Private suite",
+        value: "3 suites",
+        image:
+          "https://images.unsplash.com/photo-1615874694520-474822394e73?auto=format&fit=crop&w=900&q=86",
+      },
+      {
+        label: "Dock access",
+        value: "Private dock",
+        image:
+          "https://images.unsplash.com/photo-1604014237800-1c9102c219da?auto=format&fit=crop&w=900&q=86",
+      },
+      {
+        label: "Interior scale",
+        value: "4,980 ft²",
+        image:
+          "https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&w=900&q=86",
+      },
+    ],
   },
   {
     count: "04/06",
@@ -49,6 +109,26 @@ const residences = [
     image:
       "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=1400&q=88",
     details: ["6 suites", "Sea terrace", "9,100 ft²"],
+    detailScenes: [
+      {
+        label: "Private suite",
+        value: "6 suites",
+        image:
+          "https://images.unsplash.com/photo-1617104678098-de229db51175?auto=format&fit=crop&w=900&q=86",
+      },
+      {
+        label: "Terrace detail",
+        value: "Sea terrace",
+        image:
+          "https://images.unsplash.com/photo-1604709177225-055f99402ea3?auto=format&fit=crop&w=900&q=86",
+      },
+      {
+        label: "Interior scale",
+        value: "9,100 ft²",
+        image:
+          "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=86",
+      },
+    ],
   },
   {
     count: "05/06",
@@ -59,6 +139,26 @@ const residences = [
     image:
       "https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=1400&q=88",
     details: ["4 suites", "Wine room", "5,760 ft²"],
+    detailScenes: [
+      {
+        label: "Private suite",
+        value: "4 suites",
+        image:
+          "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=900&q=86",
+      },
+      {
+        label: "Cellar detail",
+        value: "Wine room",
+        image:
+          "https://images.unsplash.com/photo-1604709177225-055f99402ea3?auto=format&fit=crop&w=900&q=86",
+      },
+      {
+        label: "Interior scale",
+        value: "5,760 ft²",
+        image:
+          "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=900&q=86",
+      },
+    ],
   },
   {
     count: "06/06",
@@ -69,40 +169,27 @@ const residences = [
     image:
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=88",
     details: ["5 suites", "Cliff pool", "7,400 ft²"],
+    detailScenes: [
+      {
+        label: "Private suite",
+        value: "5 suites",
+        image:
+          "https://images.unsplash.com/photo-1618221469555-7f3ad97540d6?auto=format&fit=crop&w=900&q=86",
+      },
+      {
+        label: "Pool detail",
+        value: "Cliff pool",
+        image:
+          "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=900&q=86",
+      },
+      {
+        label: "Interior scale",
+        value: "7,400 ft²",
+        image:
+          "https://images.unsplash.com/photo-1600210491369-e753d80a41f3?auto=format&fit=crop&w=900&q=86",
+      },
+    ],
   },
-] as const;
-
-const detailImageSets = [
-  [
-    "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=900&q=86",
-    "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=900&q=86",
-    "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=86",
-  ],
-  [
-    "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=900&q=86",
-    "https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=900&q=86",
-    "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=900&q=86",
-  ],
-  [
-    "https://images.unsplash.com/photo-1615874694520-474822394e73?auto=format&fit=crop&w=900&q=86",
-    "https://images.unsplash.com/photo-1604014237800-1c9102c219da?auto=format&fit=crop&w=900&q=86",
-    "https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&w=900&q=86",
-  ],
-  [
-    "https://images.unsplash.com/photo-1617104678098-de229db51175?auto=format&fit=crop&w=900&q=86",
-    "https://images.unsplash.com/photo-1604709177225-055f99402ea3?auto=format&fit=crop&w=900&q=86",
-    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=86",
-  ],
-  [
-    "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=900&q=86",
-    "https://images.unsplash.com/photo-1604709177225-055f99402ea3?auto=format&fit=crop&w=900&q=86",
-    "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=900&q=86",
-  ],
-  [
-    "https://images.unsplash.com/photo-1618221469555-7f3ad97540d6?auto=format&fit=crop&w=900&q=86",
-    "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=900&q=86",
-    "https://images.unsplash.com/photo-1600210491369-e753d80a41f3?auto=format&fit=crop&w=900&q=86",
-  ],
 ] as const;
 
 const collectionTerms = [
@@ -135,12 +222,9 @@ export function FeaturedResidences() {
   const [featuredIndex, setFeaturedIndex] = useState(0);
 
   const featured = residences[featuredIndex];
-  const previewResidences = useMemo(
-    () =>
-      residences
-        .map((residence, index) => ({ residence, index }))
-        .filter(({ index }) => index !== featuredIndex),
-    [featuredIndex],
+  const residenceItems = useMemo(
+    () => residences.map((residence, index) => ({ residence, index })),
+    [],
   );
   const galleryLoop = [...residences, ...residences];
 
@@ -241,21 +325,20 @@ export function FeaturedResidences() {
           </motion.div>
         </motion.div>
 
-        <div className="grid gap-6 pt-10 lg:grid-cols-12 lg:pt-14">
-          <motion.article {...reveal(0.12)} className="lg:col-span-7">
+        <div className="grid gap-6 pt-10 lg:grid-cols-12 lg:items-stretch lg:pt-14">
+          <motion.article {...reveal(0.12)} className="lg:col-span-7 lg:h-full">
             <FeaturedResidenceCard
               residence={featured}
-              residenceIndex={featuredIndex}
               shouldReduceMotion={Boolean(shouldReduceMotion)}
             />
           </motion.article>
 
-          <div className="grid gap-4 md:grid-cols-2 lg:col-span-5">
-            {previewResidences.map(({ residence, index }, itemIndex) => (
+          <div className="grid gap-4 md:grid-cols-2 lg:col-span-5 lg:min-h-[720px] lg:grid-rows-3">
+            {residenceItems.map(({ residence, index }, itemIndex) => (
               <motion.button
                 key={residence.title}
                 type="button"
-                className="block w-full rounded-[24px] text-left outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b89a68]"
+                className="block h-full w-full rounded-[24px] text-left outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b89a68]"
                 onClick={() => setFeaturedIndex(index)}
                 layout
                 initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
@@ -265,9 +348,13 @@ export function FeaturedResidences() {
                     ? { duration: 0 }
                     : { duration: 0.5, delay: itemIndex * 0.03, ease: easeOut }
                 }
+                aria-pressed={index === featuredIndex}
                 aria-label={`Preview ${residence.title}`}
               >
-                <ResidenceImageCard residence={residence} />
+                <ResidenceImageCard
+                  residence={residence}
+                  isActive={index === featuredIndex}
+                />
               </motion.button>
             ))}
           </div>
@@ -328,59 +415,15 @@ export function FeaturedResidences() {
 
 type Residence = (typeof residences)[number];
 
-function getDetailScenes(residenceIndex: number, details: readonly string[]) {
-  const imageSet = detailImageSets[residenceIndex % detailImageSets.length];
-
-  return details.map((value, index) => ({
-    value,
-    label: getDetailLabel(value, index),
-    image: imageSet[index % imageSet.length],
-  }));
-}
-
-function getDetailLabel(value: string, index: number) {
-  const normalizedValue = value.toLowerCase();
-
-  if (index === 0 || normalizedValue.includes("suite")) {
-    return "Private suite";
-  }
-
-  if (normalizedValue.includes("bath")) {
-    return "Bath detail";
-  }
-
-  if (normalizedValue.includes("pool")) {
-    return "Pool detail";
-  }
-
-  if (normalizedValue.includes("dock")) {
-    return "Dock access";
-  }
-
-  if (normalizedValue.includes("terrace")) {
-    return "Terrace detail";
-  }
-
-  if (normalizedValue.includes("wine")) {
-    return "Cellar detail";
-  }
-
-  return "Interior scale";
-}
-
 function FeaturedResidenceCard({
   residence,
-  residenceIndex,
   shouldReduceMotion,
 }: {
   residence: Residence;
-  residenceIndex: number;
   shouldReduceMotion: boolean;
 }) {
-  const scenes = getDetailScenes(residenceIndex, residence.details);
-
   return (
-    <div className="group relative min-h-[620px] overflow-hidden rounded-[26px] bg-[#1d1d1d] md:min-h-[720px]">
+    <div className="group relative h-full min-h-[620px] overflow-hidden rounded-[26px] bg-[#1d1d1d] md:min-h-[720px]">
       <AnimatePresence initial={false}>
         <motion.img
           key={residence.image}
@@ -429,7 +472,7 @@ function FeaturedResidenceCard({
 
         <div className="hide-scrollbar mt-5 overflow-x-auto pb-1">
           <div className="flex min-w-max gap-3">
-            {scenes.map((scene) => (
+            {residence.detailScenes.map((scene) => (
               <figure
                 key={`${residence.title}-${scene.label}`}
                 className="relative h-[92px] w-[156px] shrink-0 overflow-hidden rounded-[16px] border border-white/18 bg-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.18)] backdrop-blur md:h-[108px] md:w-[184px]"
@@ -461,9 +504,21 @@ function FeaturedResidenceCard({
   );
 }
 
-function ResidenceImageCard({ residence }: { residence: Residence }) {
+function ResidenceImageCard({
+  residence,
+  isActive = false,
+}: {
+  residence: Residence;
+  isActive?: boolean;
+}) {
   return (
-    <div className="group relative min-h-[252px] overflow-hidden rounded-[24px] bg-[#1d1d1d] md:min-h-[286px]">
+    <div
+      className={`group relative h-full min-h-[232px] overflow-hidden rounded-[24px] bg-[#1d1d1d] md:min-h-[224px] lg:min-h-0 ${
+        isActive
+          ? "ring-2 ring-[#c6a87d] ring-offset-2 ring-offset-[#f4f1ea]"
+          : ""
+      }`}
+    >
       <img
         src={residence.image}
         alt={`${residence.title} residence`}
@@ -474,11 +529,34 @@ function ResidenceImageCard({ residence }: { residence: Residence }) {
         aria-hidden="true"
         className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.02)_0%,rgba(0,0,0,0.12)_48%,rgba(0,0,0,0.66)_100%)]"
       />
+      <div className="absolute left-3 right-3 top-3 flex items-start justify-between gap-3">
+        <span
+          aria-hidden="true"
+          className={`h-2 w-2 rounded-full ${
+            isActive ? "bg-[#c6a87d]" : "bg-white/50"
+          }`}
+        />
+        <div className="flex gap-1">
+          {residence.detailScenes.map((scene) => (
+            <span
+              key={`${residence.title}-${scene.label}-preview`}
+              className="relative h-8 w-9 overflow-hidden rounded-[8px] border border-white/22 bg-white/10 shadow-[0_8px_18px_rgba(0,0,0,0.16)] backdrop-blur"
+            >
+              <img
+                src={scene.image}
+                alt=""
+                className="h-full w-full object-cover"
+                loading="lazy"
+              />
+            </span>
+          ))}
+        </div>
+      </div>
       <div className="absolute inset-x-0 bottom-0 p-4 text-white md:p-5">
         <p className="font-sans text-[9px] font-semibold uppercase leading-none tracking-[0.2em] text-white/68">
           {residence.count}
         </p>
-        <h3 className="mt-2 font-display text-[24px] font-medium leading-none tracking-normal md:text-[26px]">
+        <h3 className="mt-2 font-display text-[22px] font-medium leading-none tracking-normal md:text-[24px]">
           {residence.title}
         </h3>
         <p className="mt-1.5 font-sans text-[11px] font-semibold leading-none text-white/72">
