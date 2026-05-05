@@ -338,7 +338,7 @@ export function FeaturedResidences() {
               <motion.button
                 key={residence.title}
                 type="button"
-                className="block h-full w-full rounded-[24px] text-left outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b89a68]"
+                className="block h-full w-full rounded-[24px] text-left outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#581c87]"
                 onClick={() => setFeaturedIndex(index)}
                 layout
                 initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
@@ -515,7 +515,7 @@ function ResidenceImageCard({
     <div
       className={`group relative h-full min-h-[232px] overflow-hidden rounded-[24px] bg-[#1d1d1d] md:min-h-[224px] lg:min-h-0 ${
         isActive
-          ? "ring-2 ring-[#c6a87d] ring-offset-2 ring-offset-[#f4f1ea]"
+          ? "shadow-[0_0_0_2px_#581c87,0_0_0_7px_rgba(88,28,135,0.12)]"
           : ""
       }`}
     >
@@ -527,49 +527,34 @@ function ResidenceImageCard({
       />
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.02)_0%,rgba(0,0,0,0.12)_48%,rgba(0,0,0,0.66)_100%)]"
+        className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.01)_0%,rgba(0,0,0,0.08)_48%,rgba(0,0,0,0.58)_100%)]"
       />
-      <div className="absolute left-3 right-3 top-3 flex items-start justify-between gap-3">
+      <div className="absolute left-3 top-3">
         <span
           aria-hidden="true"
           className={`h-2 w-2 rounded-full ${
-            isActive ? "bg-[#c6a87d]" : "bg-white/50"
+            isActive ? "bg-[#581c87] shadow-[0_0_18px_rgba(88,28,135,0.72)]" : "bg-white/50"
           }`}
         />
-        <div className="flex gap-1">
-          {residence.detailScenes.map((scene) => (
-            <span
-              key={`${residence.title}-${scene.label}-preview`}
-              className="relative h-8 w-9 overflow-hidden rounded-[8px] border border-white/22 bg-white/10 shadow-[0_8px_18px_rgba(0,0,0,0.16)] backdrop-blur"
-            >
-              <img
-                src={scene.image}
-                alt=""
-                className="h-full w-full object-cover"
-                loading="lazy"
-              />
-            </span>
-          ))}
-        </div>
       </div>
-      <div className="absolute inset-x-0 bottom-0 p-4 text-white md:p-5">
-        <p className="font-sans text-[9px] font-semibold uppercase leading-none tracking-[0.2em] text-white/68">
+      <div className="absolute inset-x-0 bottom-0 p-3.5 text-white md:p-4">
+        <p className="font-sans text-[8px] font-semibold uppercase leading-none tracking-[0.18em] text-white/62">
           {residence.count}
         </p>
-        <h3 className="mt-2 font-display text-[22px] font-medium leading-none tracking-normal md:text-[24px]">
+        <h3 className="mt-1.5 font-display text-[19px] font-medium leading-none tracking-normal md:text-[21px]">
           {residence.title}
         </h3>
-        <p className="mt-1.5 font-sans text-[11px] font-semibold leading-none text-white/72">
+        <p className="mt-1.5 font-sans text-[9px] font-semibold leading-none text-white/68">
           {residence.location}
         </p>
-        <p className="mt-3 line-clamp-1 font-sans text-[11px] leading-[1.45] text-white/72">
+        <p className="mt-2 line-clamp-1 font-sans text-[9px] leading-[1.4] text-white/62">
           {residence.description}
         </p>
-        <div className="mt-3 flex flex-wrap gap-1.5">
+        <div className="mt-2.5 flex flex-wrap gap-1">
           {residence.details.map((detail) => (
             <span
               key={detail}
-              className="rounded-full border border-white/24 bg-white/10 px-2.5 py-1.5 font-sans text-[9px] font-medium leading-none text-white backdrop-blur"
+              className="rounded-full border border-white/22 bg-white/10 px-2 py-1.5 font-sans text-[8px] font-medium leading-none text-white/90 backdrop-blur"
             >
               {detail}
             </span>
