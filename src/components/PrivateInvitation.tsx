@@ -1,4 +1,11 @@
-import { motion, useReducedMotion, type Transition } from "framer-motion";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+  type Transition,
+} from "framer-motion";
+import { useRef } from "react";
 
 const easeOut: Transition["ease"] = [0.22, 1, 0.36, 1];
 
@@ -84,6 +91,12 @@ function SectionMarker() {
 
 export function PrivateInvitation() {
   const shouldReduceMotion = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["-24px", "24px"]);
 
   const reveal = (delay = 0, y = 24) => ({
     initial: shouldReduceMotion ? false : { opacity: 0, y },
@@ -96,6 +109,7 @@ export function PrivateInvitation() {
 
   return (
     <section
+      ref={sectionRef}
       id="private-invitation"
       aria-labelledby="private-invitation-title"
       className="relative isolate overflow-hidden bg-[#06131d] px-6 py-20 text-white md:px-12 md:py-24 lg:px-10 lg:py-32"
@@ -105,13 +119,13 @@ export function PrivateInvitation() {
           src={invitationImageUrl}
           alt=""
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-[58%_center] opacity-[0.58]"
+          className="pointer-events-none absolute -inset-y-8 left-0 z-0 h-[calc(100%+64px)] w-full object-cover object-[58%_center] opacity-[0.58]"
           loading="lazy"
         />
       ) : (
         <motion.video
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-[58%_center] opacity-[0.58]"
+          className="pointer-events-none absolute -inset-y-8 left-0 z-0 h-[calc(100%+64px)] w-full object-cover object-[58%_center] opacity-[0.58]"
           poster={invitationImageUrl}
           autoPlay
           muted
@@ -119,6 +133,7 @@ export function PrivateInvitation() {
           playsInline
           preload="metadata"
           initial={false}
+          style={{ y: backgroundY }}
           animate={{ scale: [1, 1.03] }}
           transition={{
             duration: 12,

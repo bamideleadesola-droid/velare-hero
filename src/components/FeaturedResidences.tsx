@@ -1,8 +1,10 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   AnimatePresence,
   motion,
   useReducedMotion,
+  useScroll,
+  useTransform,
   type Transition,
 } from "framer-motion";
 
@@ -428,15 +430,26 @@ function FeaturedResidenceCard({
   residence: Residence;
   shouldReduceMotion: boolean;
 }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start end", "end start"],
+  });
+  const imageY = useTransform(scrollYProgress, [0, 1], ["-18px", "18px"]);
+
   return (
-    <div className="group relative h-full min-h-[620px] overflow-hidden rounded-[26px] bg-[#1d1d1d] md:min-h-[720px]">
+    <div
+      ref={cardRef}
+      className="group relative h-full min-h-[620px] overflow-hidden rounded-[26px] bg-[#1d1d1d] md:min-h-[720px]"
+    >
       <AnimatePresence initial={false}>
         <motion.img
           key={residence.image}
           src={residence.image}
           alt={`${residence.title} residence`}
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute -inset-y-6 left-0 h-[calc(100%+48px)] w-full object-cover"
           loading="eager"
+          style={shouldReduceMotion ? undefined : { y: imageY }}
           initial={shouldReduceMotion ? false : { opacity: 0, scale: 1.035 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={shouldReduceMotion ? undefined : { opacity: 0, scale: 1.01 }}
