@@ -307,6 +307,76 @@ function CityCard({ city }: { city: (typeof cityMarkets)[number] }) {
   );
 }
 
+type EditorialIntroProps = {
+  index: string;
+  eyebrow: string;
+  title: string;
+  description: string;
+  titleId?: string;
+  tone?: "light" | "dark";
+};
+
+function EditorialIntro({
+  index,
+  eyebrow,
+  title,
+  description,
+  titleId,
+  tone = "light",
+}: EditorialIntroProps) {
+  const isDark = tone === "dark";
+
+  return (
+    <div className="grid gap-10 lg:grid-cols-12 lg:gap-6">
+      <div className="lg:col-span-2">
+        <div className="flex items-center gap-4 lg:block">
+          <p
+            className={`font-sans text-[14px] font-semibold leading-none tracking-[0.28em] ${
+              isDark ? "text-[#c6a87d]" : "text-[#b89a68]"
+            }`}
+          >
+            {index}
+          </p>
+          <span
+            aria-hidden="true"
+            className={`block h-px w-10 lg:mt-5 ${
+              isDark ? "bg-[#c6a87d]/65" : "bg-[#b89a68]/60"
+            }`}
+          />
+        </div>
+      </div>
+
+      <div className="lg:col-span-6">
+        <p
+          className={`font-sans text-[12px] font-semibold uppercase leading-none tracking-[0.22em] ${
+            isDark ? "text-[#c6a87d]" : "text-[#b89a68]"
+          }`}
+        >
+          {eyebrow}
+        </p>
+        <h2
+          id={titleId}
+          className={`mt-6 max-w-[780px] font-display text-[42px] font-medium leading-[1.04] tracking-normal md:text-[62px] ${
+            isDark ? "text-white" : "text-[#151515]"
+          }`}
+        >
+          {title}
+        </h2>
+      </div>
+
+      <div className="lg:col-span-4 lg:pt-11">
+        <p
+          className={`max-w-[470px] font-sans text-[16px] font-normal leading-[1.75] tracking-normal ${
+            isDark ? "text-white/64" : "text-[#5f5a51]"
+          }`}
+        >
+          {description}
+        </p>
+      </div>
+    </div>
+  );
+}
+
 export function AgentsAndPartners() {
   const shouldReduceMotion = useReducedMotion();
   const marqueePartners = [...partnerLogos, ...partnerLogos];
@@ -330,33 +400,15 @@ export function AgentsAndPartners() {
       <div className="mx-auto max-w-[1460px]">
         <motion.div
           {...reveal()}
-          className="grid gap-8 border-b border-[#141414]/15 pb-10 lg:grid-cols-12 lg:gap-6 lg:pb-14"
+          className="border-b border-[#141414]/15 pb-10 lg:pb-14"
         >
-          <div className="lg:col-span-2">
-            <p className="font-sans text-[13px] font-medium leading-none tracking-[0.28em] text-[#7c735f]">
-              004
-            </p>
-          </div>
-
-          <div className="lg:col-span-6">
-            <p className="font-sans text-[12px] font-semibold uppercase leading-none tracking-[0.22em] text-[#b89a68]">
-              Our Agents
-            </p>
-            <h2
-              id="agents-title"
-              className="mt-6 max-w-[780px] font-display text-[36px] font-medium leading-[1.04] tracking-normal text-[#151515] md:text-[58px]"
-            >
-              A private roster with local instinct and global reach.
-            </h2>
-          </div>
-
-          <div className="lg:col-span-4 lg:pt-11">
-            <p className="max-w-[470px] font-sans text-[16px] font-normal leading-[1.75] tracking-normal text-[#5f5a51]">
-              More than a sales team, each VELARÉ agent is a point of access:
-              composed, responsive, and deeply connected to the markets they
-              represent.
-            </p>
-          </div>
+          <EditorialIntro
+            index="004"
+            eyebrow="Our Agents"
+            title="A private roster with local instinct and global reach."
+            titleId="agents-title"
+            description="More than a sales team, each VELARÉ agent is a point of access: composed, responsive, and deeply connected to the markets they represent."
+          />
         </motion.div>
 
         <div className="grid gap-x-6 gap-y-8 pt-10 md:grid-cols-2 lg:pt-14 xl:grid-cols-4">
@@ -422,21 +474,12 @@ export function AgentsAndPartners() {
           {...reveal(0.14)}
           className="mt-16 border-y border-[#151515]/15 py-10 md:mt-20 lg:py-12"
         >
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,0.62fr)_minmax(0,1.38fr)] lg:items-end">
-            <div>
-              <p className="font-sans text-[12px] font-semibold uppercase leading-none tracking-[0.22em] text-[#b89a68]">
-                Market Coverage
-              </p>
-              <h3 className="mt-5 max-w-[520px] font-display text-[34px] font-medium leading-[1.04] text-[#151515] md:text-[50px]">
-                Cities selected for privacy, pace, and permanence.
-              </h3>
-            </div>
-            <p className="max-w-[560px] font-sans text-[15px] leading-[1.75] text-[#6f685c] lg:justify-self-end">
-              From hillside architecture to waterfront addresses, VELARÉ
-              agents move through markets where the right residence is rarely
-              public for long.
-            </p>
-          </div>
+          <EditorialIntro
+            index="005"
+            eyebrow="Market Coverage"
+            title="Cities selected for privacy, pace, and permanence."
+            description="From hillside architecture to waterfront addresses, VELARÉ agents move through markets where the right residence is rarely public for long."
+          />
 
           <div className="relative mt-10 overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_7%,black_93%,transparent)]">
             <motion.div
@@ -471,22 +514,13 @@ export function AgentsAndPartners() {
         className="-mx-6 mt-16 bg-[#06131d] px-6 py-16 text-white md:-mx-12 md:mt-20 md:px-12 md:py-20 lg:-mx-10 lg:px-10 lg:py-24"
       >
         <div className="mx-auto max-w-[1460px]">
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.45fr)] lg:items-end">
-            <div>
-              <p className="font-sans text-[12px] font-semibold uppercase leading-none tracking-[0.22em] text-[#c6a87d]">
-                Brands & Companies
-              </p>
-              <h3 className="mt-5 max-w-[560px] font-display text-[34px] font-medium leading-[1.04] text-white md:text-[50px]">
-                Trusted by private offices, designers, and hospitality groups.
-              </h3>
-            </div>
-
-            <p className="max-w-[560px] font-sans text-[15px] leading-[1.75] text-white/64 lg:justify-self-end">
-              The VELARÉ network moves through quiet referrals: capital
-              partners, hotel groups, interior ateliers, and family offices
-              that value discretion as much as access.
-            </p>
-          </div>
+          <EditorialIntro
+            index="006"
+            eyebrow="Brands & Companies"
+            title="Trusted by private offices, designers, and hospitality groups."
+            description="The VELARÉ network moves through quiet referrals: capital partners, hotel groups, interior ateliers, and family offices that value discretion as much as access."
+            tone="dark"
+          />
 
           <div className="relative mt-10 overflow-hidden border-y border-white/12 py-6 [mask-image:linear-gradient(90deg,transparent,black_8%,black_92%,transparent)]">
             <motion.div

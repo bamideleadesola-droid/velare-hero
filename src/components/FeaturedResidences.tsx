@@ -261,9 +261,15 @@ export function FeaturedResidences() {
           className="grid gap-10 border-b border-[#141414]/15 pb-12 lg:grid-cols-12 lg:gap-6 lg:pb-16"
         >
           <div className="lg:col-span-2">
-            <p className="font-sans text-[13px] font-medium leading-none tracking-[0.28em] text-[#7c735f]">
-              002
-            </p>
+            <div className="flex items-center gap-4 lg:block">
+              <p className="font-sans text-[14px] font-semibold leading-none tracking-[0.28em] text-[#b89a68]">
+                002
+              </p>
+              <span
+                aria-hidden="true"
+                className="block h-px w-10 bg-[#b89a68]/60 lg:mt-5"
+              />
+            </div>
           </div>
           <div className="lg:col-span-6">
             <p className="font-sans text-[12px] font-semibold uppercase leading-none tracking-[0.22em] text-[#b89a68]">

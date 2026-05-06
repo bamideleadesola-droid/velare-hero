@@ -77,9 +77,15 @@ export function PrivateViewing() {
           className="grid gap-10 lg:grid-cols-12 lg:gap-6"
         >
           <div className="lg:col-span-2">
-            <p className="font-sans text-[13px] font-medium leading-none tracking-[0.28em] text-[#c6a87d]">
-              003
-            </p>
+            <div className="flex items-center gap-4 lg:block">
+              <p className="font-sans text-[14px] font-semibold leading-none tracking-[0.28em] text-[#c6a87d]">
+                003
+              </p>
+              <span
+                aria-hidden="true"
+                className="block h-px w-10 bg-[#c6a87d]/65 lg:mt-5"
+              />
+            </div>
           </div>
 
           <div className="lg:col-span-6">
