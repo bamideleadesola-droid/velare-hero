@@ -1,52 +1,37 @@
-import { useEffect, useState } from "react";
-import {
-  AnimatePresence,
-  motion,
-  useReducedMotion,
-  type Transition,
-} from "framer-motion";
+import { motion, useReducedMotion, type Transition } from "framer-motion";
 
 const easeOut: Transition["ease"] = [0.22, 1, 0.36, 1];
-const rotationIntervalMs = 3600;
 
-const experiences = [
+const privateAccessImageUrl =
+  "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=2400&q=88";
+
+const accessSteps = [
   {
     count: "01",
-    title: "Coastal Arrival",
-    label: "Approach",
-    location: "Private sunset route",
-    description:
-      "Begin with a quiet arrival sequence, framed around light, privacy, and the first impression of the residence.",
-    image:
-      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1800&q=88",
+    title: "Preference",
+    description: "A private brief sets pace, location, light, and lifestyle.",
   },
   {
     count: "02",
-    title: "Interior Walkthrough",
-    label: "Residence",
-    location: "Material and spatial review",
-    description:
-      "Move through the rooms at a measured pace, with attention to proportion, views, finishes, and daily rhythm.",
-    image:
-      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1800&q=88",
+    title: "Shortlist",
+    description: "Only residences that match the brief are prepared for review.",
   },
   {
     count: "03",
-    title: "Evening Advisory",
-    label: "Consultation",
-    location: "Private next steps",
-    description:
-      "Close the visit with a discreet advisory conversation around availability, terms, and the path forward.",
-    image:
-      "https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=1800&q=88",
+    title: "Viewing",
+    description: "The visit is arranged quietly, with the residence fully ready.",
+  },
+  {
+    count: "04",
+    title: "Advisory",
+    description: "Availability and next steps are handled with discretion.",
   },
 ] as const;
 
-const viewingRoute = [
-  "Preference briefing",
-  "Curated route",
-  "Private viewing",
-  "Discreet advisory",
+const accessNotes = [
+  "By appointment only",
+  "Private office liaison",
+  "Availability disclosed after brief",
 ] as const;
 
 function ArrowIcon() {
@@ -70,23 +55,9 @@ function ArrowIcon() {
 
 export function PrivateViewing() {
   const shouldReduceMotion = useReducedMotion();
-  const [activeIndex, setActiveIndex] = useState(0);
-  const activeExperience = experiences[activeIndex];
 
-  useEffect(() => {
-    if (shouldReduceMotion) {
-      return;
-    }
-
-    const timeout = window.setTimeout(() => {
-      setActiveIndex((activeIndex + 1) % experiences.length);
-    }, rotationIntervalMs);
-
-    return () => window.clearTimeout(timeout);
-  }, [activeIndex, shouldReduceMotion]);
-
-  const reveal = (delay = 0) => ({
-    initial: shouldReduceMotion ? false : { opacity: 0, y: 28 },
+  const reveal = (delay = 0, y = 28) => ({
+    initial: shouldReduceMotion ? false : { opacity: 0, y },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true, amount: 0.22 },
     transition: shouldReduceMotion
@@ -113,168 +84,168 @@ export function PrivateViewing() {
 
           <div className="lg:col-span-6">
             <p className="font-sans text-[12px] font-semibold uppercase leading-none tracking-[0.22em] text-[#c6a87d]">
-              Private Viewings
+              Private Access
             </p>
             <h2
               id="private-viewing-title"
               className="mt-6 max-w-[780px] font-display text-[42px] font-medium leading-[1.04] tracking-normal text-white md:text-[62px]"
             >
-              A private route into the residences that matter.
+              A quieter way to enter the world of VELARÉ.
             </h2>
           </div>
 
           <div className="lg:col-span-4 lg:pt-11">
             <p className="max-w-[470px] font-sans text-[16px] font-normal leading-[1.75] tracking-normal text-white/68">
-              Each viewing is arranged around timing, privacy, and the way you
-              want to experience a home before it becomes yours.
+              Private access is not a gallery of options. It is a considered
+              path into the right residence, shaped before the first viewing.
             </p>
           </div>
         </motion.div>
 
-        <div className="grid gap-6 pt-12 lg:grid-cols-12 lg:items-stretch lg:pt-16">
-          <motion.div
-            {...reveal(0.08)}
-            className="relative min-h-[560px] overflow-hidden rounded-[30px] bg-[#1d1d1d] md:min-h-[680px] lg:col-span-8"
-          >
-            <AnimatePresence initial={false}>
-              <motion.img
-                key={activeExperience.image}
-                src={activeExperience.image}
-                alt={`${activeExperience.title} private viewing scene`}
-                className="absolute inset-0 h-full w-full object-cover"
-                initial={shouldReduceMotion ? false : { opacity: 0, scale: 1.035 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={shouldReduceMotion ? undefined : { opacity: 0, scale: 1.01 }}
-                transition={
-                  shouldReduceMotion
-                    ? { duration: 0 }
-                    : { duration: 0.85, ease: easeOut }
-                }
-              />
-            </AnimatePresence>
-
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 bg-[linear-gradient(90deg,rgba(3,12,20,0.82)_0%,rgba(24,35,48,0.44)_42%,rgba(0,0,0,0.08)_100%)]"
-            />
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 bg-[radial-gradient(circle_at_24%_22%,rgba(198,168,125,0.34),transparent_28%),linear-gradient(180deg,rgba(0,0,0,0.06)_0%,rgba(0,0,0,0.08)_42%,rgba(0,0,0,0.72)_100%)]"
-            />
-            <div
-              aria-hidden="true"
-              className="absolute left-0 top-0 h-full w-1 bg-[#c6a87d]"
-            />
-
-            <div className="absolute inset-x-0 bottom-0 p-6 text-white md:p-8 lg:p-10">
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.div
-                  key={activeExperience.title}
-                  initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={shouldReduceMotion ? undefined : { opacity: 0, y: -10 }}
-                  transition={
-                    shouldReduceMotion
-                      ? { duration: 0 }
-                      : { duration: 0.55, ease: easeOut }
+        <motion.div
+          {...reveal(0.08)}
+          className="relative mt-12 min-h-[780px] overflow-hidden rounded-[34px] border border-white/12 bg-[#091924] shadow-[0_28px_96px_rgba(0,0,0,0.34)] md:mt-16 lg:min-h-[760px]"
+        >
+          <motion.img
+            src={privateAccessImageUrl}
+            alt="Private luxury residence prepared for an appointment"
+            className="absolute inset-0 h-full w-full object-cover object-[66%_center]"
+            loading="lazy"
+            initial={false}
+            animate={shouldReduceMotion ? undefined : { scale: [1, 1.035] }}
+            transition={
+              shouldReduceMotion
+                ? { duration: 0 }
+                : {
+                    duration: 12,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                    ease: "easeInOut",
                   }
+            }
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-[linear-gradient(90deg,rgba(3,12,20,0.94)_0%,rgba(3,12,20,0.78)_38%,rgba(3,12,20,0.22)_100%)]"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,12,20,0.34)_0%,rgba(3,12,20,0.08)_42%,rgba(3,12,20,0.9)_100%)]"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-y-0 left-0 w-1 bg-[#c6a87d]"
+          />
+          <div aria-hidden="true" className="velare-grain absolute inset-0" />
+
+          <div className="relative z-10 flex min-h-[780px] flex-col justify-between p-6 md:p-10 lg:min-h-[760px] lg:p-14">
+            <div className="grid gap-10 lg:grid-cols-12">
+              <div className="max-w-[640px] lg:col-span-6">
+                <motion.p
+                  {...reveal(0.14, 18)}
+                  className="font-sans text-[11px] font-semibold uppercase leading-none tracking-[0.24em] text-white/58"
                 >
-                  <p className="font-sans text-[11px] font-semibold uppercase leading-none tracking-[0.24em] text-white/68">
-                    {activeExperience.count} / {activeExperience.label}
-                  </p>
-                  <h3 className="mt-4 max-w-[680px] font-display text-[42px] font-medium leading-none tracking-normal md:text-[62px]">
-                    {activeExperience.title}
-                  </h3>
-                  <p className="mt-3 font-sans text-[13px] font-semibold leading-none text-white/70">
-                    {activeExperience.location}
-                  </p>
-                  <p className="mt-5 max-w-[580px] font-sans text-[15px] leading-[1.7] text-white/78">
-                    {activeExperience.description}
-                  </p>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          </motion.div>
+                  Private Office
+                </motion.p>
+                <motion.h3
+                  {...reveal(0.2, 22)}
+                  className="mt-5 font-display text-[38px] font-medium leading-[1.02] tracking-normal text-white md:text-[70px]"
+                >
+                  By appointment, with every detail already understood.
+                </motion.h3>
+                <motion.p
+                  {...reveal(0.28, 18)}
+                  className="mt-6 max-w-[510px] font-sans text-[15px] leading-[1.75] text-white/72 md:text-[16px]"
+                >
+                  The private office prepares the experience before you arrive,
+                  so the viewing feels calm, precise, and personally held.
+                </motion.p>
 
-          <motion.aside
-            {...reveal(0.14)}
-            className="flex min-h-[560px] flex-col justify-between rounded-[30px] border border-white/12 bg-white/[0.07] p-3 shadow-[0_26px_80px_rgba(0,0,0,0.22),inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-2xl md:p-4 lg:col-span-4 lg:min-h-[680px]"
-          >
-            <div className="space-y-3">
-              {experiences.map((experience, index) => {
-                const isActive = index === activeIndex;
+                <motion.a
+                  {...reveal(0.36, 16)}
+                  href="mailto:private@velare.residences"
+                  className="mt-8 inline-flex min-h-12 items-center gap-3 rounded-full bg-[#c6a87d] px-6 font-sans text-[14px] font-semibold leading-none text-[#111111] transition-[background-color,transform] duration-300 ease-in-out hover:-translate-y-0.5 hover:bg-[#d8bb91] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c6a87d]"
+                >
+                  Request Private Access
+                  <ArrowIcon />
+                </motion.a>
+              </div>
 
-                return (
-                  <button
-                    key={experience.title}
-                    type="button"
-                    aria-pressed={isActive}
-                    onClick={() => setActiveIndex(index)}
-                    className={`group grid w-full grid-cols-[84px_minmax(0,1fr)] gap-4 rounded-[22px] border p-3 text-left outline-none transition-[background-color,border-color,box-shadow,transform] duration-300 ease-in-out hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c6a87d] ${
-                      isActive
-                        ? "border-[#c6a87d]/45 bg-white/[0.13] shadow-[0_18px_48px_rgba(198,168,125,0.15)]"
-                        : "border-white/12 bg-white/[0.055]"
-                    }`}
-                  >
-                    <span className="relative h-[92px] overflow-hidden rounded-[18px] bg-white/10">
-                      <img
-                        src={experience.image}
-                        alt=""
-                        className="h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]"
-                        loading="lazy"
-                      />
-                      <span
-                        aria-hidden="true"
-                        className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0)_10%,rgba(0,0,0,0.42)_100%)]"
-                      />
-                      <span className="absolute bottom-2 left-2 font-sans text-[10px] font-semibold tracking-[0.16em] text-white">
-                        {experience.count}
-                      </span>
-                    </span>
-                    <span className="min-w-0">
-                      <span className="block font-sans text-[10px] font-semibold uppercase leading-none tracking-[0.18em] text-[#c6a87d]">
-                        {experience.label}
-                      </span>
-                      <span className="mt-2 block font-display text-[24px] font-medium leading-none text-white">
-                        {experience.title}
-                      </span>
-                      <span className="mt-3 line-clamp-2 block font-sans text-[12px] leading-[1.55] text-white/58">
-                        {experience.description}
-                      </span>
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-
-            <div className="mt-6 rounded-[24px] border border-white/12 bg-[#081925]/72 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">
-              <p className="font-sans text-[11px] font-semibold uppercase leading-none tracking-[0.2em] text-[#c6a87d]">
-                Viewing Route
-              </p>
-              <ol className="mt-5 space-y-3">
-                {viewingRoute.map((step, index) => (
-                  <li
-                    key={step}
-                    className="flex items-center gap-3 font-sans text-[13px] font-medium text-white/86"
-                  >
-                    <span className="h-px w-6 bg-[#c6a87d]/65" />
-                    <span className="text-[10px] tracking-[0.16em] text-white/45">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    {step}
-                  </li>
-                ))}
-              </ol>
-              <a
-                href="mailto:private@velare.residences"
-                className="mt-6 inline-flex min-h-12 items-center gap-3 rounded-full bg-[#c6a87d] px-6 font-sans text-[14px] font-semibold leading-none text-[#111111] transition-[background-color,transform] duration-300 ease-in-out hover:-translate-y-0.5 hover:bg-[#d8bb91] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c6a87d]"
+              <motion.div
+                {...reveal(0.24, 20)}
+                className="border-t border-white/20 pt-6 lg:col-span-4 lg:col-start-9 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0"
               >
-                Request a Private Tour
-                <ArrowIcon />
-              </a>
+                <p className="font-sans text-[11px] font-semibold uppercase leading-none tracking-[0.22em] text-[#c6a87d]">
+                  Access Notes
+                </p>
+                <ul className="mt-6 space-y-4">
+                  {accessNotes.map((note) => (
+                    <li
+                      key={note}
+                      className="flex items-center gap-4 font-sans text-[13px] font-medium leading-none text-white/82"
+                    >
+                      <span className="h-px w-8 bg-[#c6a87d]/70" />
+                      {note}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
             </div>
-          </motion.aside>
-        </div>
+
+            <motion.div {...reveal(0.32, 18)} className="mt-16">
+              <div className="relative overflow-hidden border-t border-white/22 pt-6">
+                {!shouldReduceMotion && (
+                  <motion.span
+                    aria-hidden="true"
+                    className="absolute left-0 top-0 h-px bg-[#c6a87d]"
+                    initial={{ width: "0%" }}
+                    whileInView={{ width: "100%" }}
+                    viewport={{ once: false, amount: 0.5 }}
+                    transition={{
+                      duration: 8,
+                      repeat: Infinity,
+                      repeatType: "loop",
+                      ease: "easeInOut",
+                    }}
+                  />
+                )}
+                <ol className="grid gap-8 md:grid-cols-4">
+                  {accessSteps.map((step, index) => (
+                    <motion.li
+                      key={step.title}
+                      initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, amount: 0.4 }}
+                      transition={
+                        shouldReduceMotion
+                          ? { duration: 0 }
+                          : {
+                              duration: 0.65,
+                              delay: 0.12 + index * 0.08,
+                              ease: easeOut,
+                            }
+                      }
+                    >
+                      <p className="font-sans text-[10px] font-semibold leading-none tracking-[0.18em] text-[#c6a87d]">
+                        {step.count}
+                      </p>
+                      <h4 className="mt-3 font-display text-[25px] font-medium leading-none text-white md:text-[28px]">
+                        {step.title}
+                      </h4>
+                      <p className="mt-4 max-w-[250px] font-sans text-[12px] leading-[1.65] text-white/62">
+                        {step.description}
+                      </p>
+                    </motion.li>
+                  ))}
+                </ol>
+              </div>
+            </motion.div>
+          </div>
+
+          <p className="absolute right-7 top-7 hidden origin-top-right rotate-180 font-sans text-[10px] font-semibold uppercase leading-none tracking-[0.28em] text-white/42 [writing-mode:vertical-rl] lg:block">
+            VELARÉ Private Office
+          </p>
+        </motion.div>
       </div>
     </section>
   );
