@@ -10,6 +10,14 @@ const easeOut: Transition["ease"] = [0.22, 1, 0.36, 1];
 
 const navItems = ["Home", "Residences", "Design", "Private Tours", "Journal"];
 
+const navHrefByItem: Record<string, string> = {
+  Home: "/",
+  Residences: "#residences",
+  Design: "#residences",
+  "Private Tours": "#private-tour",
+  Journal: "#private-tour",
+};
+
 const stats = [
   {
     value: "50+",
@@ -236,7 +244,7 @@ export function VelareHero() {
               {navItems.map((item, index) => (
                 <li key={item}>
                   <a
-                    href={index === 0 ? "/" : `#${item.toLowerCase().replace(/\s+/g, "-")}`}
+                    href={navHrefByItem[item]}
                     className="group relative inline-flex py-2 outline-none transition-colors duration-300 hover:text-white focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
                   >
                     {item}
