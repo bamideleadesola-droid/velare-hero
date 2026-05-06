@@ -541,7 +541,7 @@ function TourRequestForm() {
 
       <button
         type="submit"
-        className="mt-7 inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-full bg-[#581c87] px-6 font-sans text-[14px] font-semibold leading-none text-white shadow-[0_16px_38px_rgba(88,28,135,0.22)] transition-[background-color,transform] duration-300 ease-in-out hover:-translate-y-0.5 hover:bg-[#6d28a7] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c6a87d]"
+        className="mt-7 inline-flex min-h-14 w-full items-center justify-center gap-4 rounded-full bg-white px-8 font-sans text-[15px] font-semibold leading-none tracking-normal text-[#0f2034] shadow-[0_16px_38px_rgba(15,23,42,0.18)] transition-[background-color,transform] duration-300 ease-in-out hover:-translate-y-0.5 hover:bg-white/[0.92] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
       >
         Submit Request
         <ArrowIcon />

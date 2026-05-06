@@ -7,7 +7,7 @@ const navHrefByItem: Record<NavItem, string> = {
   Residences: "/residences",
   Design: "/#residences",
   "Private Tours": "/private-tour",
-  Agents: "/#agents",
+  Agents: "/agents",
 };
 
 function ArrowIcon() {

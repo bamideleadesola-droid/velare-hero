@@ -15,7 +15,7 @@ const navHrefByItem: Record<string, string> = {
   Residences: "/residences",
   Design: "#residences",
   "Private Tours": "/private-tour",
-  Agents: "#agents",
+  Agents: "/agents",
 };
 
 const stats = [

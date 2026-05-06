@@ -2,7 +2,7 @@ import { motion, useReducedMotion, type Transition } from "framer-motion";
 
 const easeOut: Transition["ease"] = [0.22, 1, 0.36, 1];
 
-const agents = [
+export const agents = [
   {
     name: "Amara Vale",
     role: "Director of Private Residences",
@@ -85,7 +85,7 @@ const agents = [
   },
 ] as const;
 
-const partnerLogos = [
+export const partnerLogos = [
   {
     name: "Aureon Capital",
     sector: "Private Capital",
@@ -118,7 +118,7 @@ const partnerLogos = [
   },
 ] as const;
 
-const cityMarkets = [
+export const cityMarkets = [
   {
     city: "Los Angeles",
     region: "Coastal estates and hillside privacy",
@@ -252,7 +252,7 @@ function LogoMark({ variant }: { variant: (typeof partnerLogos)[number]["variant
   );
 }
 
-function PartnerLogo({
+export function PartnerLogo({
   partner,
 }: {
   partner: (typeof partnerLogos)[number];
@@ -274,7 +274,7 @@ function PartnerLogo({
   );
 }
 
-function CityCard({ city }: { city: (typeof cityMarkets)[number] }) {
+export function CityCard({ city }: { city: (typeof cityMarkets)[number] }) {
   return (
     <article className="relative h-[420px] min-w-[82vw] overflow-hidden rounded-[30px] bg-[#06131d] shadow-[0_24px_80px_rgba(52,42,28,0.16)] md:h-[500px] md:min-w-[560px] lg:min-w-[660px]">
       <img
