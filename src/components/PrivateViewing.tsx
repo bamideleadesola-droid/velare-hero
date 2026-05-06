@@ -126,19 +126,15 @@ export function PrivateViewing() {
           />
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-[linear-gradient(90deg,rgba(12,8,28,0.94)_0%,rgba(88,28,135,0.56)_36%,rgba(3,12,20,0.22)_100%)]"
+            className="absolute inset-0 bg-[linear-gradient(90deg,rgba(3,12,20,0.94)_0%,rgba(3,12,20,0.78)_38%,rgba(3,12,20,0.22)_100%)]"
           />
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-[radial-gradient(circle_at_32%_18%,rgba(88,28,135,0.34),transparent_30%),linear-gradient(180deg,rgba(3,12,20,0.34)_0%,rgba(3,12,20,0.08)_42%,rgba(3,12,20,0.9)_100%)]"
+            className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,12,20,0.34)_0%,rgba(3,12,20,0.08)_42%,rgba(3,12,20,0.9)_100%)]"
           />
           <div
             aria-hidden="true"
-            className="absolute -left-24 top-28 h-72 w-72 rounded-full bg-[#581c87]/28 blur-3xl"
-          />
-          <div
-            aria-hidden="true"
-            className="absolute inset-y-0 left-0 w-1 bg-[linear-gradient(180deg,#581c87_0%,#c6a87d_48%,#581c87_100%)]"
+            className="absolute inset-y-0 left-0 w-1 bg-[#c6a87d]"
           />
           <div aria-hidden="true" className="velare-grain absolute inset-0" />
 
@@ -168,7 +164,7 @@ export function PrivateViewing() {
                 <motion.a
                   {...reveal(0.36, 16)}
                   href="mailto:private@velare.residences"
-                  className="mt-8 inline-flex min-h-12 items-center gap-3 rounded-full bg-[#c6a87d] px-6 font-sans text-[14px] font-semibold leading-none text-[#111111] shadow-[0_18px_46px_rgba(88,28,135,0.22)] transition-[background-color,transform] duration-300 ease-in-out hover:-translate-y-0.5 hover:bg-[#d8bb91] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#581c87]"
+                  className="mt-8 inline-flex min-h-12 items-center gap-3 rounded-full bg-[#c6a87d] px-6 font-sans text-[14px] font-semibold leading-none text-[#111111] transition-[background-color,transform] duration-300 ease-in-out hover:-translate-y-0.5 hover:bg-[#d8bb91] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c6a87d]"
                 >
                   Request Private Access
                   <ArrowIcon />
@@ -189,7 +185,6 @@ export function PrivateViewing() {
                       className="flex items-center gap-4 font-sans text-[13px] font-medium leading-none text-white/82"
                     >
                       <span className="h-px w-8 bg-[#c6a87d]/70" />
-                      <span className="-ml-4 h-1.5 w-1.5 rounded-full bg-[#581c87] shadow-[0_0_16px_rgba(88,28,135,0.85)]" />
                       {note}
                     </li>
                   ))}
@@ -202,7 +197,7 @@ export function PrivateViewing() {
                 {!shouldReduceMotion && (
                   <motion.span
                     aria-hidden="true"
-                    className="absolute left-0 top-0 h-px bg-[linear-gradient(90deg,#581c87_0%,#c6a87d_42%,#581c87_100%)] shadow-[0_0_22px_rgba(88,28,135,0.52)]"
+                    className="absolute left-0 top-0 h-px bg-[#c6a87d]"
                     initial={{ width: "0%" }}
                     whileInView={{ width: "100%" }}
                     viewport={{ once: false, amount: 0.5 }}
