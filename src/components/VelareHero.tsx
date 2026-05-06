@@ -8,14 +8,14 @@ const luxuryVideoUrl =
 
 const easeOut: Transition["ease"] = [0.22, 1, 0.36, 1];
 
-const navItems = ["Home", "Residences", "Design", "Private Tours", "Journal"];
+const navItems = ["Home", "Residences", "Design", "Private Tours", "Agents"];
 
 const navHrefByItem: Record<string, string> = {
   Home: "/",
   Residences: "#residences",
   Design: "#residences",
   "Private Tours": "#private-tour",
-  Journal: "#world",
+  Agents: "#agents",
 };
 
 const stats = [
