@@ -118,6 +118,65 @@ const partnerLogos = [
   },
 ] as const;
 
+const cityMarkets = [
+  {
+    city: "Los Angeles",
+    region: "Coastal estates and hillside privacy",
+    image:
+      "https://images.pexels.com/photos/28738232/pexels-photo-28738232.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    objectPosition: "center 58%",
+  },
+  {
+    city: "Monaco",
+    region: "Marina residences and private arrivals",
+    image:
+      "https://images.pexels.com/photos/18341129/pexels-photo-18341129.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    objectPosition: "center 42%",
+  },
+  {
+    city: "London",
+    region: "Heritage addresses and discreet access",
+    image:
+      "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1600&q=88",
+    objectPosition: "center 42%",
+  },
+  {
+    city: "Dubai",
+    region: "Waterfront towers and resort-scale villas",
+    image:
+      "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=88",
+    objectPosition: "center 44%",
+  },
+  {
+    city: "Paris",
+    region: "Quiet streets, cultural access, private homes",
+    image:
+      "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=1600&q=88",
+    objectPosition: "center 45%",
+  },
+  {
+    city: "Lake Como",
+    region: "Waterline villas and gardened calm",
+    image:
+      "https://images.pexels.com/photos/19873394/pexels-photo-19873394.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    objectPosition: "center 52%",
+  },
+  {
+    city: "New York",
+    region: "Penthouses, townhouses, and private offices",
+    image:
+      "https://images.pexels.com/photos/33324218/pexels-photo-33324218.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    objectPosition: "center 42%",
+  },
+  {
+    city: "Singapore",
+    region: "Garden city living and cross-border access",
+    image:
+      "https://images.pexels.com/photos/30471856/pexels-photo-30471856.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    objectPosition: "center 46%",
+  },
+] as const;
+
 function ArrowIcon() {
   return (
     <svg
@@ -199,15 +258,15 @@ function PartnerLogo({
   partner: (typeof partnerLogos)[number];
 }) {
   return (
-    <div className="flex h-28 min-w-[280px] items-center gap-4 border border-[#151515]/12 bg-[#fbfaf7]/45 px-6 text-[#151515] backdrop-blur">
-      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-[#b89a68]/40 bg-[#f4f1ea] text-[#b89a68]">
+    <div className="flex h-28 min-w-[280px] items-center gap-4 border border-white/12 bg-white/[0.055] px-6 text-white backdrop-blur">
+      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-[#c6a87d]/50 bg-[#c6a87d]/10 text-[#c6a87d]">
         <LogoMark variant={partner.variant} />
       </div>
       <div>
         <p className="font-display text-[22px] font-medium leading-none tracking-normal">
           {partner.name}
         </p>
-        <p className="mt-3 font-sans text-[10px] font-semibold uppercase leading-none tracking-[0.2em] text-[#7c735f]">
+        <p className="mt-3 font-sans text-[10px] font-semibold uppercase leading-none tracking-[0.2em] text-white/52">
           {partner.sector}
         </p>
       </div>
@@ -215,9 +274,43 @@ function PartnerLogo({
   );
 }
 
+function CityCard({ city }: { city: (typeof cityMarkets)[number] }) {
+  return (
+    <article className="relative h-[420px] min-w-[82vw] overflow-hidden rounded-[30px] bg-[#06131d] shadow-[0_24px_80px_rgba(52,42,28,0.16)] md:h-[500px] md:min-w-[560px] lg:min-w-[660px]">
+      <img
+        src={city.image}
+        alt={`${city.city} luxury market`}
+        className="h-full w-full object-cover"
+        style={{ objectPosition: city.objectPosition }}
+        loading="eager"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-[linear-gradient(180deg,rgba(6,19,29,0.02)_0%,rgba(6,19,29,0.16)_38%,rgba(6,19,29,0.82)_100%)]"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-0 h-1 bg-[#c6a87d]"
+      />
+      <div className="absolute inset-x-0 bottom-0 p-6 text-white md:p-8">
+        <p className="font-sans text-[11px] font-semibold uppercase leading-none tracking-[0.22em] text-[#c6a87d]">
+          Market
+        </p>
+        <h3 className="mt-4 font-display text-[50px] font-medium leading-none md:text-[72px]">
+          {city.city}
+        </h3>
+        <p className="mt-4 max-w-[420px] font-sans text-[14px] leading-[1.7] text-white/72">
+          {city.region}
+        </p>
+      </div>
+    </article>
+  );
+}
+
 export function AgentsAndPartners() {
   const shouldReduceMotion = useReducedMotion();
   const marqueePartners = [...partnerLogos, ...partnerLogos];
+  const cityLoop = [...cityMarkets, ...cityMarkets];
 
   const reveal = (delay = 0, y = 24) => ({
     initial: shouldReduceMotion ? false : { opacity: 0, y },
@@ -232,7 +325,7 @@ export function AgentsAndPartners() {
     <section
       id="agents"
       aria-labelledby="agents-title"
-      className="bg-[#f4f1ea] px-6 py-16 text-[#141414] md:px-12 md:py-24 lg:px-10 lg:py-32"
+      className="overflow-x-hidden bg-[#f4f1ea] px-6 py-16 text-[#141414] md:px-12 md:py-24 lg:px-10 lg:py-32"
     >
       <div className="mx-auto max-w-[1460px]">
         <motion.div
@@ -266,14 +359,14 @@ export function AgentsAndPartners() {
           </div>
         </motion.div>
 
-        <div className="grid gap-x-6 gap-y-10 pt-10 md:grid-cols-2 lg:pt-14 xl:grid-cols-4">
-          {agents.map((agent, index) => (
+        <div className="grid gap-x-6 gap-y-8 pt-10 md:grid-cols-2 lg:pt-14 xl:grid-cols-4">
+          {agents.map((agent) => (
             <motion.article
               key={agent.name}
               initial={false}
-              className="group border-t border-[#151515]/15 pt-5"
+              className="group rounded-[28px] border border-[#c6a87d]/25 bg-[#fbfaf7]/70 p-3 shadow-[0_18px_54px_rgba(88,74,50,0.08)] transition-[border-color,transform,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:border-[#c6a87d]/55 hover:shadow-[0_24px_70px_rgba(88,74,50,0.12)]"
             >
-              <div className="relative aspect-[4/4.25] overflow-hidden rounded-[22px] bg-[#d8d1c4]">
+              <div className="relative aspect-[4/3.62] overflow-hidden rounded-[22px] bg-[#d8d1c4]">
                 <img
                   src={agent.image}
                   alt={`${agent.name}, ${agent.role}`}
@@ -294,25 +387,20 @@ export function AgentsAndPartners() {
                 </p>
               </div>
 
-              <div className="mt-5">
+              <div className="px-1 pb-2 pt-4">
                 <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <p className="font-sans text-[10px] font-semibold uppercase leading-none tracking-[0.18em] text-[#b89a68]">
-                      {String(index + 1).padStart(2, "0")}
-                    </p>
-                    <h3 className="mt-3 font-display text-[31px] font-medium leading-none text-[#151515]">
-                      {agent.name}
-                    </h3>
-                  </div>
-                  <p className="mt-1 max-w-[92px] text-right font-sans text-[10px] font-semibold uppercase leading-[1.45] tracking-[0.14em] text-[#7c735f]">
+                  <h3 className="font-display text-[30px] font-medium leading-none text-[#151515]">
+                    {agent.name}
+                  </h3>
+                  <p className="max-w-[96px] text-right font-sans text-[10px] font-semibold uppercase leading-[1.35] tracking-[0.14em] text-[#9a7b4b]">
                     {agent.portfolio}
                   </p>
                 </div>
 
-                <p className="mt-4 font-sans text-[13px] font-semibold leading-none text-[#6f685c]">
+                <p className="mt-3 font-sans text-[13px] font-semibold leading-none text-[#6f685c]">
                   {agent.role}
                 </p>
-                <p className="mt-4 font-sans text-[13px] leading-[1.65] text-[#625d54] md:min-h-[70px]">
+                <p className="mt-3 font-sans text-[13px] leading-[1.55] text-[#625d54] md:min-h-[62px]">
                   {agent.focus}
                 </p>
 
@@ -320,7 +408,7 @@ export function AgentsAndPartners() {
                   href={`mailto:private@velare.residences?subject=${encodeURIComponent(
                     `Private introduction with ${agent.name}`,
                   )}`}
-                  className="mt-5 inline-flex min-h-11 items-center justify-center gap-3 rounded-full border border-[#151515]/18 px-5 font-sans text-[12px] font-semibold uppercase leading-none tracking-[0.14em] text-[#151515] transition-[background-color,color,transform,border-color] duration-300 ease-in-out hover:-translate-y-0.5 hover:border-[#151515] hover:bg-[#151515] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b89a68]"
+                  className="mt-4 inline-flex min-h-10 items-center justify-center gap-3 rounded-full border border-[#151515]/18 px-5 font-sans text-[11px] font-semibold uppercase leading-none tracking-[0.14em] text-[#151515] transition-[background-color,color,transform,border-color] duration-300 ease-in-out hover:-translate-y-0.5 hover:border-[#151515] hover:bg-[#151515] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b89a68]"
                 >
                   Contact
                   <ArrowIcon />
@@ -332,37 +420,75 @@ export function AgentsAndPartners() {
 
         <motion.div
           {...reveal(0.14)}
-          className="mt-16 grid gap-6 border-y border-[#151515]/15 py-7 md:mt-20 md:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] md:items-center lg:py-8"
+          className="mt-16 border-y border-[#151515]/15 py-10 md:mt-20 lg:py-12"
         >
-          <p className="font-sans text-[12px] font-semibold uppercase leading-none tracking-[0.22em] text-[#b89a68]">
-            Market Coverage
-          </p>
-          <p className="font-display text-[25px] font-medium leading-tight text-[#151515] md:text-[34px]">
-            Los Angeles / Monaco / London / Dubai / Paris / Lake Como / New
-            York / Singapore
-          </p>
-        </motion.div>
-
-        <motion.div {...reveal(0.2)} className="mt-16 md:mt-20">
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.45fr)] lg:items-end">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,0.62fr)_minmax(0,1.38fr)] lg:items-end">
             <div>
               <p className="font-sans text-[12px] font-semibold uppercase leading-none tracking-[0.22em] text-[#b89a68]">
-                Brands & Companies
+                Market Coverage
               </p>
               <h3 className="mt-5 max-w-[520px] font-display text-[34px] font-medium leading-[1.04] text-[#151515] md:text-[50px]">
-                Trusted by private offices, design houses, and hospitality
-                groups.
+                Cities selected for privacy, pace, and permanence.
+              </h3>
+            </div>
+            <p className="max-w-[560px] font-sans text-[15px] leading-[1.75] text-[#6f685c] lg:justify-self-end">
+              From hillside architecture to waterfront addresses, VELARÉ
+              agents move through markets where the right residence is rarely
+              public for long.
+            </p>
+          </div>
+
+          <div className="relative mt-10 overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_7%,black_93%,transparent)]">
+            <motion.div
+              className="flex w-max gap-5"
+              animate={
+                shouldReduceMotion
+                  ? undefined
+                  : {
+                      x: ["0%", "-50%"],
+                    }
+              }
+              transition={
+                shouldReduceMotion
+                  ? { duration: 0 }
+                  : {
+                      duration: 52,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }
+              }
+            >
+              {cityLoop.map((city, index) => (
+                <CityCard key={`${city.city}-${index}`} city={city} />
+              ))}
+            </motion.div>
+          </div>
+        </motion.div>
+      </div>
+
+      <motion.div
+        {...reveal(0.2)}
+        className="-mx-6 mt-16 bg-[#06131d] px-6 py-16 text-white md:-mx-12 md:mt-20 md:px-12 md:py-20 lg:-mx-10 lg:px-10 lg:py-24"
+      >
+        <div className="mx-auto max-w-[1460px]">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.45fr)] lg:items-end">
+            <div>
+              <p className="font-sans text-[12px] font-semibold uppercase leading-none tracking-[0.22em] text-[#c6a87d]">
+                Brands & Companies
+              </p>
+              <h3 className="mt-5 max-w-[560px] font-display text-[34px] font-medium leading-[1.04] text-white md:text-[50px]">
+                Trusted by private offices, designers, and hospitality groups.
               </h3>
             </div>
 
-            <p className="max-w-[560px] font-sans text-[15px] leading-[1.75] text-[#6f685c] lg:justify-self-end">
+            <p className="max-w-[560px] font-sans text-[15px] leading-[1.75] text-white/64 lg:justify-self-end">
               The VELARÉ network moves through quiet referrals: capital
               partners, hotel groups, interior ateliers, and family offices
               that value discretion as much as access.
             </p>
           </div>
 
-          <div className="relative mt-10 overflow-hidden border-y border-[#151515]/15 py-6 [mask-image:linear-gradient(90deg,transparent,black_8%,black_92%,transparent)]">
+          <div className="relative mt-10 overflow-hidden border-y border-white/12 py-6 [mask-image:linear-gradient(90deg,transparent,black_8%,black_92%,transparent)]">
             <motion.div
               className="flex w-max gap-4"
               animate={
@@ -387,8 +513,8 @@ export function AgentsAndPartners() {
               ))}
             </motion.div>
           </div>
-        </motion.div>
-      </div>
+        </div>
+      </motion.div>
     </section>
   );
 }
