@@ -5,6 +5,9 @@ const easeOut: Transition["ease"] = [0.22, 1, 0.36, 1];
 const invitationImageUrl =
   "https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=2400&q=90";
 
+const invitationVideoUrl =
+  "https://videos.pexels.com/video-files/32456138/13842188_3840_2160_60fps.mp4";
+
 const invitationDetails = [
   {
     label: "Private Office",
@@ -46,6 +49,25 @@ function ArrowIcon() {
   );
 }
 
+function ChevronIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      className="h-4 w-4"
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <path
+        d="m7 10 5 5 5-5"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 function SectionMarker() {
   return (
     <div className="flex items-center gap-4 lg:block">
@@ -78,25 +100,36 @@ export function PrivateInvitation() {
       aria-labelledby="private-invitation-title"
       className="relative isolate overflow-hidden bg-[#06131d] px-6 py-20 text-white md:px-12 md:py-24 lg:px-10 lg:py-32"
     >
-      <motion.img
-        src={invitationImageUrl}
-        alt=""
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-[58%_center] opacity-[0.58]"
-        loading="lazy"
-        initial={false}
-        animate={shouldReduceMotion ? undefined : { scale: [1, 1.035] }}
-        transition={
-          shouldReduceMotion
-            ? { duration: 0 }
-            : {
-                duration: 14,
-                repeat: Infinity,
-                repeatType: "reverse",
-                ease: "easeInOut",
-              }
-        }
-      />
+      {shouldReduceMotion ? (
+        <img
+          src={invitationImageUrl}
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-[58%_center] opacity-[0.58]"
+          loading="lazy"
+        />
+      ) : (
+        <motion.video
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-[58%_center] opacity-[0.58]"
+          poster={invitationImageUrl}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          initial={false}
+          animate={{ scale: [1, 1.03] }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            repeatType: "reverse",
+            ease: "easeInOut",
+          }}
+        >
+          <source src={invitationVideoUrl} type="video/mp4" />
+        </motion.video>
+      )}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 z-0 bg-[linear-gradient(90deg,rgba(3,7,18,0.96)_0%,rgba(15,23,42,0.84)_34%,rgba(49,20,93,0.54)_64%,rgba(6,19,29,0.38)_100%)]"
@@ -206,21 +239,26 @@ export function PrivateInvitation() {
                 <span className="font-sans text-[10px] font-semibold uppercase leading-none tracking-[0.18em] text-white/48">
                   Preferred Market
                 </span>
-                <select
-                  name="market"
-                  className="mt-3 h-12 w-full rounded-full border border-white/14 bg-[#102332] px-5 font-sans text-[14px] text-white outline-none transition-colors duration-300 focus:border-[#c6a87d] focus:bg-[#142b3b]"
-                  defaultValue=""
-                >
-                  <option value="" disabled>
-                    Select a market
-                  </option>
-                  <option>Los Angeles</option>
-                  <option>London</option>
-                  <option>Dubai</option>
-                  <option>Monaco</option>
-                  <option>Paris</option>
-                  <option>Lake Como</option>
-                </select>
+                <div className="relative mt-3">
+                  <select
+                    name="market"
+                    className="h-12 w-full appearance-none rounded-full border border-white/14 bg-[#102332] py-0 pl-5 pr-14 font-sans text-[14px] text-white outline-none transition-colors duration-300 focus:border-[#c6a87d] focus:bg-[#142b3b]"
+                    defaultValue=""
+                  >
+                    <option value="" disabled>
+                      Select a market
+                    </option>
+                    <option>Los Angeles</option>
+                    <option>London</option>
+                    <option>Dubai</option>
+                    <option>Monaco</option>
+                    <option>Paris</option>
+                    <option>Lake Como</option>
+                  </select>
+                  <span className="pointer-events-none absolute right-5 top-1/2 flex h-5 w-5 -translate-y-1/2 items-center justify-center text-[#c6a87d]">
+                    <ChevronIcon />
+                  </span>
+                </div>
               </label>
 
               <label className="block">
