@@ -1,5 +1,6 @@
 const footerLinks = [
   { label: "Residences", href: "/residences" },
+  { label: "Design", href: "/design" },
   { label: "Private Access", href: "/private-tour" },
   { label: "Agents", href: "/agents" },
   { label: "Invitation", href: "/#private-invitation" },
@@ -18,7 +19,7 @@ export function SiteFooter({ className = "" }: { className?: string }) {
         </a>
 
         <nav aria-label="Footer navigation">
-          <ul className="flex flex-wrap gap-x-6 gap-y-3 font-sans text-[12px] font-semibold uppercase leading-none tracking-[0.16em] text-white/54">
+          <ul className="grid grid-cols-2 gap-x-6 gap-y-4 font-sans text-[12px] font-semibold uppercase leading-none tracking-[0.16em] text-white/54 sm:flex sm:flex-wrap sm:gap-y-3">
             {footerLinks.map((link) => (
               <li key={link.label}>
                 <a

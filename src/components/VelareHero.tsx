@@ -13,7 +13,7 @@ const navItems = ["Home", "Residences", "Design", "Private Tours", "Agents"];
 const navHrefByItem: Record<string, string> = {
   Home: "/",
   Residences: "/residences",
-  Design: "#residences",
+  Design: "/design",
   "Private Tours": "/private-tour",
   Agents: "/agents",
 };

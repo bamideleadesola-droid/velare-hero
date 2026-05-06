@@ -5,7 +5,7 @@ type NavItem = (typeof navItems)[number];
 const navHrefByItem: Record<NavItem, string> = {
   Home: "/",
   Residences: "/residences",
-  Design: "/#residences",
+  Design: "/design",
   "Private Tours": "/private-tour",
   Agents: "/agents",
 };

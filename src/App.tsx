@@ -1,5 +1,6 @@
 import { AgentsPage } from "./components/AgentsPage";
 import { AgentsAndPartners } from "./components/AgentsAndPartners";
+import { DesignPage } from "./components/DesignPage";
 import { FeaturedResidences } from "./components/FeaturedResidences";
 import { PrivateInvitation } from "./components/PrivateInvitation";
 import { PrivateTourPage } from "./components/PrivateTourPage";
@@ -13,6 +14,7 @@ function App() {
   const isResidencePage = pathname === "/residences";
   const isPrivateTourPage = pathname === "/private-tour";
   const isAgentsPage = pathname === "/agents";
+  const isDesignPage = pathname === "/design";
 
   return (
     <>
@@ -23,6 +25,8 @@ function App() {
         <ResidencePage />
       ) : isAgentsPage ? (
         <AgentsPage />
+      ) : isDesignPage ? (
+        <DesignPage />
       ) : (
         <>
           <VelareHero />
