@@ -11,7 +11,7 @@ import {
 const easeOut: Transition["ease"] = [0.22, 1, 0.36, 1];
 const rotationIntervalMs = 2000;
 
-const residences = [
+export const residences = [
   {
     count: "01/06",
     title: "The Atrium House",
@@ -421,7 +421,7 @@ export function FeaturedResidences() {
   );
 }
 
-type Residence = (typeof residences)[number];
+export type Residence = (typeof residences)[number];
 
 function FeaturedResidenceCard({
   residence,

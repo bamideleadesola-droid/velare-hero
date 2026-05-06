@@ -12,7 +12,7 @@ const navItems = ["Home", "Residences", "Design", "Private Tours", "Agents"];
 
 const navHrefByItem: Record<string, string> = {
   Home: "/",
-  Residences: "#residences",
+  Residences: "/residences",
   Design: "#residences",
   "Private Tours": "#private-tour",
   Agents: "#agents",
@@ -312,7 +312,7 @@ export function VelareHero() {
               className="mt-8 flex flex-col gap-4 sm:flex-row"
             >
               <a
-                href="#residences"
+                href="/residences"
                 className="inline-flex min-h-14 items-center justify-center gap-4 rounded-full bg-white px-8 font-sans text-[15px] font-semibold leading-none tracking-normal text-[#0f2034] transition-[background-color,transform] duration-300 ease-in-out hover:-translate-y-0.5 hover:bg-white/[0.92] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
               >
                 Explore Residences
