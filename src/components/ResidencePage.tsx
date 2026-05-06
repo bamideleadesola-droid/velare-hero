@@ -2,18 +2,9 @@ import { motion, useReducedMotion, type Transition } from "framer-motion";
 import { useMemo, useState } from "react";
 import { residences, type Residence } from "./FeaturedResidences";
 import { SiteFooter } from "./SiteFooter";
+import { SiteHeader } from "./SiteHeader";
 
 const easeOut: Transition["ease"] = [0.22, 1, 0.36, 1];
-
-const navItems = ["Home", "Residences", "Design", "Private Tours", "Agents"];
-
-const navHrefByItem: Record<string, string> = {
-  Home: "/",
-  Residences: "/residences",
-  Design: "/#residences",
-  "Private Tours": "/#private-tour",
-  Agents: "/#agents",
-};
 
 const residenceMeta = [
   {
@@ -131,87 +122,6 @@ function ChevronIcon() {
   );
 }
 
-function LogoMark() {
-  return (
-    <svg
-      aria-hidden="true"
-      className="h-8 w-8 shrink-0"
-      viewBox="0 0 32 32"
-      fill="none"
-    >
-      <path
-        d="M5 14.2 16 5l11 9.2v12.3H5V14.2Z"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M11 26.5V16.2h10v10.3M13.8 16.2v-4.4h4.4v4.4"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function ResidenceHeader() {
-  return (
-    <header className="relative z-20 flex items-center justify-between gap-6 py-8">
-      <a
-        href="/"
-        aria-label="VELARÉ home"
-        className="flex items-center gap-3 font-sans text-[24px] font-semibold uppercase leading-none tracking-[0.18em] text-white outline-none focus-visible:rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
-      >
-        <LogoMark />
-        <span>VELARÉ</span>
-      </a>
-
-      <nav aria-label="Primary navigation" className="hidden lg:block">
-        <ul className="flex items-center gap-10 font-sans text-[15px] font-medium leading-none tracking-normal text-white/90">
-          {navItems.map((item) => (
-            <li key={item}>
-              <a
-                href={navHrefByItem[item]}
-                className="group relative inline-flex py-2 outline-none transition-colors duration-300 hover:text-white focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
-              >
-                {item}
-                <span
-                  aria-hidden="true"
-                  className={`absolute -bottom-2 left-0 h-px bg-white transition-all duration-300 ${
-                    item === "Residences" ? "w-full" : "w-0 group-hover:w-full"
-                  }`}
-                />
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
-
-      <div className="flex items-center gap-3">
-        <a
-          href="/#private-invitation"
-          className="hidden min-h-12 items-center gap-3 rounded-full border border-white/70 px-6 font-sans text-[15px] font-medium leading-none text-white transition-[background-color,transform,border-color] duration-300 ease-in-out hover:-translate-y-0.5 hover:border-white hover:bg-white/[0.12] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:inline-flex"
-        >
-          Contact Us
-          <ArrowIcon />
-        </a>
-        <button
-          type="button"
-          aria-label="Open menu"
-          className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/[0.16] text-white backdrop-blur transition-[background-color,transform] duration-300 ease-in-out hover:-translate-y-0.5 hover:bg-white/[0.24] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
-        >
-          <span className="flex flex-col gap-1.5">
-            <span className="h-px w-5 bg-current" />
-            <span className="h-px w-5 bg-current" />
-            <span className="h-px w-5 bg-current" />
-          </span>
-        </button>
-      </div>
-    </header>
-  );
-}
-
 function getMeta(index: number) {
   return residenceMeta[index % residenceMeta.length];
 }
@@ -305,7 +215,7 @@ export function ResidencePage() {
         <div aria-hidden="true" className="velare-grain pointer-events-none absolute inset-0 z-0" />
 
         <div className="relative z-10 mx-auto w-full min-w-0 max-w-[1460px]">
-          <ResidenceHeader />
+          <SiteHeader activeItem="Residences" />
 
           <div className="grid min-w-0 gap-10 border-t border-white/14 pt-16 md:pt-20 lg:grid-cols-12 lg:gap-6 lg:pt-28">
             <motion.div {...reveal(0.08)} className="min-w-0 lg:col-span-8">

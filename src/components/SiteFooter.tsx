@@ -1,6 +1,6 @@
 const footerLinks = [
   { label: "Residences", href: "/residences" },
-  { label: "Private Access", href: "/#private-tour" },
+  { label: "Private Access", href: "/private-tour" },
   { label: "Agents", href: "/#agents" },
   { label: "Invitation", href: "/#private-invitation" },
 ] as const;

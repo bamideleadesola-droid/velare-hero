@@ -14,7 +14,7 @@ const navHrefByItem: Record<string, string> = {
   Home: "/",
   Residences: "/residences",
   Design: "#residences",
-  "Private Tours": "#private-tour",
+  "Private Tours": "/private-tour",
   Agents: "#agents",
 };
 
@@ -319,7 +319,7 @@ export function VelareHero() {
                 <ArrowIcon />
               </a>
               <a
-                href="#private-tour"
+                href="/private-tour"
                 className="inline-flex min-h-14 items-center justify-center gap-3 rounded-full border border-white/[0.72] bg-white/[0.08] px-8 font-sans text-[15px] font-medium leading-none tracking-normal text-white backdrop-blur transition-[background-color,transform,border-color] duration-300 ease-in-out hover:-translate-y-0.5 hover:border-white hover:bg-white/[0.18] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
               >
                 <PlayIcon />
