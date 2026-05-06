@@ -1,4 +1,5 @@
 import { motion, useReducedMotion, type Transition } from "framer-motion";
+import { residences, type Residence } from "./FeaturedResidences";
 import { SiteFooter } from "./SiteFooter";
 import { SiteHeader } from "./SiteHeader";
 
@@ -42,6 +43,46 @@ const markets = [
   "Sonoma",
   "Milos",
 ] as const;
+
+const tourResidenceMeta = [
+  {
+    market: "Los Angeles",
+    price: "$8.7M",
+    access: "Private Review",
+  },
+  {
+    market: "Dubai",
+    price: "$6.4M",
+    access: "By Request",
+  },
+  {
+    market: "Lake Como",
+    price: "$5.2M",
+    access: "Viewing Window",
+  },
+  {
+    market: "Cap Ferrat",
+    price: "$11.8M",
+    access: "Private Mandate",
+  },
+  {
+    market: "Sonoma",
+    price: "$4.9M",
+    access: "Preview Ready",
+  },
+  {
+    market: "Milos",
+    price: "$7.6M",
+    access: "Invitation Only",
+  },
+] as const;
+
+const compactTourDetail: Record<string, string> = {
+  "Pool court": "Pool",
+  "Private dock": "Dock",
+  "Sea terrace": "Terrace",
+  "Cliff pool": "Cliff pool",
+};
 
 function ArrowIcon() {
   return (
@@ -169,17 +210,58 @@ export function PrivateTourPage() {
       </section>
 
       <section
-        aria-labelledby="tour-rhythm-title"
+        aria-labelledby="tour-residences-title"
         className="px-6 py-20 md:px-12 md:py-24 lg:px-10 lg:py-32"
       >
-        <div className="mx-auto grid w-full max-w-[1460px] gap-10 lg:grid-cols-12 lg:gap-6">
-          <motion.div {...reveal()} className="lg:col-span-5">
+        <div className="mx-auto w-full max-w-[1460px]">
+          <motion.div
+            {...reveal()}
+            className="grid min-w-0 gap-10 border-b border-[#141414]/15 pb-12 lg:grid-cols-12 lg:gap-6 lg:pb-16"
+          >
+            <div className="min-w-0 lg:col-span-7">
+              <p className="font-sans text-[12px] font-semibold uppercase leading-none tracking-[0.22em] text-[#581c87]">
+                Tour Residences
+              </p>
+              <h2
+                id="tour-residences-title"
+                className="mt-6 max-w-[330px] break-words font-display text-[42px] font-medium leading-[1.04] tracking-normal sm:max-w-[760px] md:text-[62px]"
+              >
+                Select the residences you want prepared.
+              </h2>
+            </div>
+
+            <p className="max-w-[330px] font-sans text-[16px] leading-[1.75] text-[#5f5a51] sm:max-w-[470px] lg:col-span-4 lg:col-start-9 lg:pt-11">
+              A concise set of private opportunities can be arranged into a
+              calm viewing route by the VELARÉ private office.
+            </p>
+          </motion.div>
+
+          <div className="mt-10 grid w-full gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {residences.map((residence, index) => (
+              <TourResidenceCard
+                key={residence.title}
+                residence={residence}
+                meta={tourResidenceMeta[index % tourResidenceMeta.length]}
+                shouldReduceMotion={Boolean(shouldReduceMotion)}
+                delay={0.08 + index * 0.04}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section
+        aria-labelledby="tour-rhythm-title"
+        className="px-6 pb-20 md:px-12 md:pb-24 lg:px-10 lg:pb-32"
+      >
+        <div className="mx-auto grid w-full max-w-[1460px] min-w-0 gap-10 lg:grid-cols-12 lg:gap-6">
+          <motion.div {...reveal()} className="min-w-0 lg:col-span-5">
             <p className="font-sans text-[12px] font-semibold uppercase leading-none tracking-[0.22em] text-[#581c87]">
               Private Office Rhythm
             </p>
             <h2
               id="tour-rhythm-title"
-              className="mt-6 max-w-[620px] font-display text-[42px] font-medium leading-[1.04] tracking-normal md:text-[62px]"
+              className="mt-6 max-w-[330px] break-words font-display text-[42px] font-medium leading-[1.04] tracking-normal md:max-w-[620px] md:text-[62px]"
             >
               No open-house energy. No unnecessary attention.
             </h2>
@@ -187,7 +269,7 @@ export function PrivateTourPage() {
 
           <motion.div
             {...reveal(0.08)}
-            className="relative min-h-[520px] overflow-hidden rounded-[34px] border border-[#581c87]/12 bg-[#06131d] shadow-[0_24px_80px_rgba(88,74,50,0.13)] lg:col-span-7"
+            className="relative min-h-[500px] w-[342px] max-w-full overflow-hidden rounded-[34px] border border-[#581c87]/12 bg-[#06131d] shadow-[0_24px_80px_rgba(88,74,50,0.13)] md:w-full lg:col-span-7 lg:min-h-[520px]"
           >
             <img
               src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1800&q=88"
@@ -199,12 +281,12 @@ export function PrivateTourPage() {
               aria-hidden="true"
               className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.02)_0%,rgba(18,7,32,0.28)_44%,rgba(18,7,32,0.78)_100%)]"
             />
-            <div className="absolute inset-x-0 bottom-0 p-5 text-white md:p-7">
-              <div className="rounded-[26px] border border-white/18 bg-white/[0.12] p-5 backdrop-blur-2xl md:p-6">
+            <div className="absolute inset-x-0 bottom-0 p-4 text-white md:p-7">
+              <div className="rounded-[24px] border border-white/18 bg-white/[0.12] p-4 backdrop-blur-2xl md:rounded-[26px] md:p-6">
                 <p className="font-sans text-[10px] font-semibold uppercase leading-none tracking-[0.2em] text-[#c6a87d]">
                   Prepared Viewing
                 </p>
-                <p className="mt-4 max-w-[620px] font-display text-[34px] font-medium leading-[1.05] md:text-[48px]">
+                <p className="mt-4 max-w-[620px] break-words font-display text-[30px] font-medium leading-[1.05] md:text-[48px]">
                   The residence is ready before the conversation becomes a visit.
                 </p>
               </div>
@@ -213,12 +295,12 @@ export function PrivateTourPage() {
 
           <motion.ol
             {...reveal(0.12, 18)}
-            className="grid gap-4 lg:col-span-12 lg:grid-cols-3"
+            className="grid w-[342px] max-w-full gap-4 md:w-full lg:col-span-12 lg:grid-cols-3"
           >
             {tourSteps.map((step) => (
               <li
                 key={step.title}
-                className="rounded-[26px] border border-[#581c87]/12 bg-[#fbfaf7]/82 p-6 shadow-[0_18px_54px_rgba(88,74,50,0.08)]"
+                className="min-w-0 rounded-[26px] border border-[#581c87]/12 bg-[#fbfaf7]/82 p-6 shadow-[0_18px_54px_rgba(88,74,50,0.08)]"
               >
                 <p className="font-sans text-[10px] font-semibold uppercase leading-none tracking-[0.18em] text-[#581c87]">
                   {step.count}
@@ -226,7 +308,7 @@ export function PrivateTourPage() {
                 <h3 className="mt-5 font-display text-[31px] font-medium leading-none">
                   {step.title}
                 </h3>
-                <p className="mt-4 max-w-[390px] font-sans text-[14px] leading-[1.75] text-[#665f52]">
+                <p className="mt-4 max-w-[300px] break-words font-sans text-[14px] leading-[1.75] text-[#665f52] md:max-w-[390px]">
                   {step.text}
                 </p>
               </li>
@@ -236,17 +318,17 @@ export function PrivateTourPage() {
       </section>
 
       <section className="bg-[#06131d] px-6 py-20 text-white md:px-12 md:py-24 lg:px-10 lg:py-28">
-        <div className="mx-auto grid w-full max-w-[1460px] gap-10 lg:grid-cols-12 lg:gap-6">
-          <div className="lg:col-span-7">
+        <div className="mx-auto grid w-full max-w-[1460px] min-w-0 gap-10 lg:grid-cols-12 lg:gap-6">
+          <div className="min-w-0 lg:col-span-7">
             <p className="font-sans text-[12px] font-semibold uppercase leading-none tracking-[0.22em] text-[#c6a87d]">
               Private Access
             </p>
-            <h2 className="mt-6 max-w-[780px] font-display text-[42px] font-medium leading-[1.04] md:text-[62px]">
+            <h2 className="mt-6 max-w-[330px] break-words font-display text-[42px] font-medium leading-[1.04] md:max-w-[780px] md:text-[62px]">
               Begin with a private brief.
             </h2>
           </div>
-          <div className="lg:col-span-4 lg:col-start-9 lg:pt-11">
-            <p className="max-w-[470px] font-sans text-[16px] leading-[1.75] text-white/66">
+          <div className="min-w-0 lg:col-span-4 lg:col-start-9 lg:pt-11">
+            <p className="max-w-[330px] break-words font-sans text-[16px] leading-[1.75] text-white/66 md:max-w-[470px]">
               A VELARÉ advisor will respond with a considered first step, shaped
               around your market, timing, and privacy requirements.
             </p>
@@ -264,6 +346,106 @@ export function PrivateTourPage() {
         </div>
       </section>
     </main>
+  );
+}
+
+function TourResidenceCard({
+  residence,
+  meta,
+  shouldReduceMotion,
+  delay,
+}: {
+  residence: Residence;
+  meta: (typeof tourResidenceMeta)[number];
+  shouldReduceMotion: boolean;
+  delay: number;
+}) {
+  return (
+    <motion.article
+      initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.16 }}
+      transition={
+        shouldReduceMotion
+          ? { duration: 0 }
+          : { duration: 0.72, delay, ease: easeOut }
+      }
+      className="group flex min-h-full w-[342px] max-w-full flex-col overflow-hidden rounded-[30px] border border-[#581c87]/12 bg-[#fbfaf7]/86 shadow-[0_20px_64px_rgba(88,74,50,0.09)] transition-[border-color,transform,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:border-[#581c87]/34 hover:shadow-[0_30px_90px_rgba(88,28,135,0.13)] md:w-full"
+    >
+      <a
+        href={`mailto:private@velare.residences?subject=${encodeURIComponent(
+          `Private tour request for ${residence.title}`,
+        )}`}
+        aria-label={`Request a private tour for ${residence.title}`}
+        className="relative block min-h-[392px] overflow-hidden outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#581c87] md:min-h-[460px]"
+      >
+        <img
+          src={residence.image}
+          alt={`${residence.title} residence`}
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.035]"
+          loading="lazy"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(18,7,32,0.16)_38%,rgba(18,7,32,0.76)_100%)]"
+        />
+        <div className="absolute left-5 top-5 flex flex-wrap gap-2">
+          <span className="rounded-full border border-white/22 bg-white/14 px-3 py-2 font-sans text-[10px] font-semibold uppercase leading-none tracking-[0.16em] text-white backdrop-blur">
+            {meta.market}
+          </span>
+          <span className="rounded-full border border-[#c6a87d]/45 bg-[#581c87]/42 px-3 py-2 font-sans text-[10px] font-semibold uppercase leading-none tracking-[0.16em] text-[#f0d7b0] backdrop-blur">
+            {meta.access}
+          </span>
+        </div>
+
+        <div className="absolute inset-x-0 bottom-0 p-4 text-white md:p-5">
+          <div className="rounded-[22px] border border-white/18 bg-white/[0.13] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.18)] backdrop-blur-2xl md:rounded-[24px] md:p-5">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <p className="font-sans text-[10px] font-semibold uppercase leading-none tracking-[0.2em] text-[#c6a87d]">
+                {residence.count}
+              </p>
+              <p className="font-display text-[24px] font-medium leading-none text-white md:text-[26px]">
+                {meta.price}
+              </p>
+            </div>
+            <h3 className="mt-3 font-display text-[30px] font-medium leading-[0.98] text-white md:text-[40px]">
+              {residence.title}
+            </h3>
+            <p className="mt-3 font-sans text-[12px] font-medium leading-none text-white/68 md:text-[13px]">
+              {residence.location}
+            </p>
+          </div>
+        </div>
+      </a>
+
+      <div className="flex flex-1 flex-col justify-between p-4 md:p-5">
+        <div className="grid grid-cols-3 gap-2.5 md:gap-3">
+          {residence.details.map((detail, index) => (
+            <div
+              key={detail}
+              className="min-w-0 rounded-[14px] border border-[#581c87]/10 bg-white/54 p-2.5 md:rounded-[16px] md:p-3"
+            >
+              <p className="truncate font-sans text-[8px] font-semibold uppercase leading-none tracking-[0.12em] text-[#581c87]/58 md:text-[9px] md:tracking-[0.14em]">
+                {["Suites", "Feature", "Scale"][index]}
+              </p>
+              <p className="mt-2 whitespace-nowrap font-display text-[14px] font-medium leading-none text-[#151515] md:text-[17px]">
+                {compactTourDetail[detail] ?? detail}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <a
+          href={`mailto:private@velare.residences?subject=${encodeURIComponent(
+            `Private tour request for ${residence.title}`,
+          )}`}
+          className="mt-5 inline-flex min-h-11 items-center justify-center gap-3 rounded-full bg-[#581c87] px-5 font-sans text-[13px] font-semibold leading-none text-white shadow-[0_14px_34px_rgba(88,28,135,0.2)] transition-[background-color,transform] duration-300 ease-in-out hover:-translate-y-0.5 hover:bg-[#6d28a7] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#581c87]"
+        >
+          Select for Tour
+          <ArrowIcon />
+        </a>
+      </div>
+    </motion.article>
   );
 }
 
