@@ -1,7 +1,14 @@
 import { motion, useReducedMotion, type Transition } from "framer-motion";
+import { useState, type FormEvent } from "react";
 import { residences, type Residence } from "./FeaturedResidences";
 import { SiteFooter } from "./SiteFooter";
 import { SiteHeader } from "./SiteHeader";
+import {
+  buildMailtoHref,
+  getFormValue,
+  submitContactRequest,
+  type ContactPayload,
+} from "../utils/contact";
 
 const easeOut: Transition["ease"] = [0.22, 1, 0.36, 1];
 
@@ -450,9 +457,46 @@ function TourResidenceCard({
 }
 
 function TourRequestForm() {
+  const [submitState, setSubmitState] = useState<
+    "idle" | "submitting" | "success" | "fallback"
+  >("idle");
+  const [statusMessage, setStatusMessage] = useState("");
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const payload: ContactPayload = {
+      source: "Private tour page",
+      name: getFormValue(formData, "name"),
+      email: getFormValue(formData, "email"),
+      market: getFormValue(formData, "market"),
+      timing: getFormValue(formData, "timing"),
+      inquiry: "Private tour",
+      message: getFormValue(formData, "notes"),
+    };
+
+    setSubmitState("submitting");
+    setStatusMessage("Sending your viewing request...");
+
+    const result = await submitContactRequest(payload);
+
+    if (result.ok) {
+      form.reset();
+      setSubmitState("success");
+      setStatusMessage(result.message);
+      return;
+    }
+
+    setSubmitState("fallback");
+    setStatusMessage(result.message);
+    window.location.href = buildMailtoHref(payload);
+  }
+
   return (
     <form
-      action="mailto:private@velare.residences"
+      onSubmit={handleSubmit}
       className="relative w-[342px] max-w-full overflow-hidden rounded-[30px] border border-white/18 bg-white/[0.105] p-5 shadow-[0_28px_100px_rgba(0,0,0,0.34),inset_0_1px_0_rgba(255,255,255,0.18)] backdrop-blur-2xl md:w-full md:p-7"
     >
       <div
@@ -475,6 +519,7 @@ function TourRequestForm() {
             name="name"
             type="text"
             autoComplete="name"
+            required
             className="mt-3 h-12 w-full rounded-full border border-white/14 bg-white/[0.08] px-5 font-sans text-[14px] text-white outline-none transition-colors duration-300 placeholder:text-white/34 focus:border-[#c6a87d] focus:bg-white/[0.12]"
             placeholder="Private client"
           />
@@ -488,6 +533,7 @@ function TourRequestForm() {
             name="email"
             type="email"
             autoComplete="email"
+            required
             className="mt-3 h-12 w-full rounded-full border border-white/14 bg-white/[0.08] px-5 font-sans text-[14px] text-white outline-none transition-colors duration-300 placeholder:text-white/34 focus:border-[#c6a87d] focus:bg-white/[0.12]"
             placeholder="name@example.com"
           />
@@ -502,6 +548,7 @@ function TourRequestForm() {
               name="market"
               className="h-12 w-full appearance-none rounded-full border border-white/14 bg-[#102332] py-0 pl-5 pr-12 font-sans text-[14px] text-white outline-none transition-colors duration-300 focus:border-[#c6a87d] focus:bg-[#142b3b]"
               defaultValue=""
+              required
             >
               <option value="" disabled>
                 Select a market
@@ -533,6 +580,7 @@ function TourRequestForm() {
           <textarea
             name="notes"
             rows={4}
+            required
             className="mt-3 w-full resize-none rounded-[22px] border border-white/14 bg-white/[0.08] px-5 py-4 font-sans text-[14px] leading-[1.6] text-white outline-none transition-colors duration-300 placeholder:text-white/34 focus:border-[#c6a87d] focus:bg-white/[0.12]"
             placeholder="Residence style, markets, privacy needs"
           />
@@ -541,11 +589,20 @@ function TourRequestForm() {
 
       <button
         type="submit"
-        className="mt-7 inline-flex min-h-14 w-full items-center justify-center gap-4 rounded-full bg-white px-8 font-sans text-[15px] font-semibold leading-none tracking-normal text-[#0f2034] shadow-[0_16px_38px_rgba(15,23,42,0.18)] transition-[background-color,transform] duration-300 ease-in-out hover:-translate-y-0.5 hover:bg-white/[0.92] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+        disabled={submitState === "submitting"}
+        className="mt-7 inline-flex min-h-14 w-full items-center justify-center gap-4 rounded-full bg-white px-8 font-sans text-[15px] font-semibold leading-none tracking-normal text-[#0f2034] shadow-[0_16px_38px_rgba(15,23,42,0.18)] transition-[background-color,transform,opacity] duration-300 ease-in-out hover:-translate-y-0.5 hover:bg-white/[0.92] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white disabled:cursor-wait disabled:opacity-70 disabled:hover:translate-y-0"
       >
-        Submit Request
+        {submitState === "submitting" ? "Sending Request" : "Submit Request"}
         <ArrowIcon />
       </button>
+      {statusMessage ? (
+        <p
+          aria-live="polite"
+          className="mt-4 font-sans text-[12px] font-medium leading-[1.6] text-white/66"
+        >
+          {statusMessage}
+        </p>
+      ) : null}
     </form>
   );
 }

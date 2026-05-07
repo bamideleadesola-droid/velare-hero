@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://velare-hero.vercel.app/sitemap.xml
