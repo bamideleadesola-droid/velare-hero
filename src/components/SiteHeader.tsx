@@ -56,7 +56,7 @@ function LogoMark() {
 export function SiteHeader({
   activeItem,
   className = "",
-  ctaHref = "/#private-invitation",
+  ctaHref = "/contact",
 }: {
   activeItem?: NavItem;
   className?: string;

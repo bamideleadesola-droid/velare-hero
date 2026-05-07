@@ -224,7 +224,7 @@ export function AgentsPage() {
         <div aria-hidden="true" className="velare-grain pointer-events-none absolute inset-0 z-0" />
 
         <div className="relative z-10 mx-auto w-full max-w-[1460px]">
-          <SiteHeader activeItem="Agents" ctaHref="/private-tour" />
+          <SiteHeader activeItem="Agents" />
 
           <div className="grid min-w-0 gap-10 border-t border-white/14 pt-16 md:pt-20 lg:grid-cols-12 lg:gap-6 lg:pt-28">
             <motion.div {...reveal(0.06)} className="min-w-0 lg:col-span-7">

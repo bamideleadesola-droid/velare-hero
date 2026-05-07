@@ -262,7 +262,7 @@ export function VelareHero() {
 
           <div className="flex items-center gap-3">
             <a
-              href="#private-invitation"
+              href="/contact"
               className="hidden min-h-12 items-center gap-3 rounded-full border border-white/70 px-6 font-sans text-[15px] font-medium leading-none text-white transition-[background-color,transform,border-color] duration-300 ease-in-out hover:-translate-y-0.5 hover:border-white hover:bg-white/[0.12] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:inline-flex"
             >
               Contact Us
